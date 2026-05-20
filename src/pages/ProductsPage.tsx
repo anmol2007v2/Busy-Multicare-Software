@@ -4,7 +4,6 @@ import { products } from '../data/products';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO';
 import { SITE_URL } from '../config/site';
-import { handleInquiry } from '../utils/whatsapp';
 
 const ProductsPage = () => {
   useSEO({
