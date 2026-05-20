@@ -1,8 +1,19 @@
 import { motion } from 'framer-motion';
 import Leadership from '../components/Leadership';
 import { Target, Users, Zap, ShieldCheck } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
+import { SITE_URL } from '../config/site';
 
 const AboutUsPage = () => {
+  useSEO({
+    title: 'About Busy Multicare Software Nepal',
+    description:
+      'Learn about Busy Multicare Software, the authorized BUSY dealer in Nepal offering accounting, ERP, POS and payroll solutions to 5,000+ businesses.',
+    canonical: `${SITE_URL}/about`,
+    keywords:
+      'about busy multicare, busy software dealer nepal, authorized busy partner, nepal accounting software provider, busy accounting software kathmandu',
+  });
+
   return (
     <div className="bg-surface min-h-screen pt-28 md:pt-32 pb-section-padding px-margin-mobile md:px-margin-desktop overflow-x-hidden">
       {/* Vision & Mission */}

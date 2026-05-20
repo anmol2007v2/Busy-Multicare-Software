@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { products } from '../data/products';
+import { useSEO, Schema } from '../hooks/useSEO';
+import { SITE_URL } from '../config/site';
 import { 
   ArrowLeft, 
   Download, 
@@ -16,7 +18,31 @@ import {
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const product = products.find(p => p.id === id);
+  const product = products.find((p) => p.id === id);
+
+  useSEO({
+    title: product ? `${product.name} | BUSY Software Nepal` : 'Product Not Found',
+    description: product
+      ? product.description
+      : 'BUSY product details from Busy Multicare Software in Nepal.',
+    canonical: `${SITE_URL}/product/${id ?? ''}`,
+    ogType: 'product',
+    ogImage: product ? `${SITE_URL}${product.image}` : undefined,
+    keywords: product
+      ? `${product.name.toLowerCase()} nepal, busy ${product.name.toLowerCase()}, busy software price nepal, ${product.edition.toLowerCase()} edition busy`
+      : 'busy software nepal, busy accounting software nepal',
+    structuredData: product
+      ? Schema.product({
+          name: product.name,
+          description: product.description,
+          image: `${SITE_URL}${product.image}`,
+          price: product.prices.single.replace('NRS ', '').replace(',', ''),
+          currency: 'NPR',
+          rating: 4.8,
+          reviewCount: 120,
+        })
+      : undefined,
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);

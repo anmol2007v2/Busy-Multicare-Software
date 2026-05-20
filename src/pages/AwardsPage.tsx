@@ -1,8 +1,19 @@
 import { motion } from 'framer-motion';
 import Awards from '../components/Awards';
 import CountUp from '../components/CountUp';
+import { useSEO } from '../hooks/useSEO';
+import { SITE_URL } from '../config/site';
 
 const AwardsPage = () => {
+  useSEO({
+    title: 'Busy Multicare Awards & Recognition | Nepal BUSY Dealer',
+    description:
+      'Discover the awards, industry recognition, and customer trust earned by Busy Multicare Software as Nepal’s leading BUSY software partner.',
+    canonical: `${SITE_URL}/awards`,
+    keywords:
+      'busy multicare awards, busy nepal recognition, busy software partner awards, nepal accounting software awards',
+  });
+
   return (
     <div className="bg-surface min-h-screen pt-32 pb-section-padding">
       <header className="px-margin-desktop mb-20 text-center">
