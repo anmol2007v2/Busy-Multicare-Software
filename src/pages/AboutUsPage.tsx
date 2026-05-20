@@ -54,7 +54,7 @@ const AboutUsPage = () => {
                 />
               </div>
               <div className="absolute -bottom-6 left-4 right-4 sm:-bottom-10 sm:-left-10 sm:right-auto bg-white p-6 sm:p-8 rounded-3xl shadow-xl border border-surface-container flex items-center gap-4 sm:gap-6 max-w-xs mx-auto sm:mx-0">
-                 <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white text-display-hero">15+</div>
+                 <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white text-headline-sm font-bold">25+</div>
                  <div>
                     <p className="font-bold text-headline-sm">Years</p>
                     <p className="text-on-surface-variant">Of Excellence in Tech</p>

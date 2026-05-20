@@ -26,7 +26,7 @@ export interface SEOProps {
 const BASE_URL = 'https://busymulticare.com';
 const SITE_NAME = 'Busy Multicare Software';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
-const TWITTER_HANDLE = '@busymulticare';
+// Twitter creator tag removed — handle not verified
 
 function setMeta(name: string, content: string, property = false) {
   const attr = property ? 'property' : 'name';
@@ -108,7 +108,6 @@ export function useSEO({
 
     // Twitter Card
     setMeta('twitter:card', 'summary_large_image');
-    setMeta('twitter:site', TWITTER_HANDLE);
     setMeta('twitter:title', fullTitle);
     setMeta('twitter:description', description);
     setMeta('twitter:image', ogImage);

@@ -19,7 +19,7 @@ export const products: Product[] = [
     tagline: 'Small & Medium Business',
     edition: 'Blue',
     prices: {
-      single: 'NRS 8,000',
+      single: 'NRS 10,000',
       multi: 'NRS 15,000'
     },
     features: [
@@ -40,7 +40,7 @@ export const products: Product[] = [
     tagline: 'Medium & Semi Large Business',
     edition: 'Saffron',
     prices: {
-      single: 'NRS 15,000',
+      single: 'NRS 18,000',
       multi: 'NRS 26,000'
     },
     features: [
@@ -61,7 +61,7 @@ export const products: Product[] = [
     tagline: 'Large Manufacturing Business',
     edition: 'Emerald',
     prices: {
-      single: 'NRS 18,000',
+      single: 'NRS 22,000',
       multi: 'NRS 55,000'
     },
     features: [

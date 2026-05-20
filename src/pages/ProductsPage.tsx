@@ -1,10 +1,17 @@
-
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { products } from '../data/products';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { useSEO } from '../hooks/useSEO';
+import { SITE_URL } from '../config/site';
+import { handleInquiry } from '../utils/whatsapp';
 
 const ProductsPage = () => {
+  useSEO({
+    title: 'Busy Software Products & Prices Nepal | Busy Multicare',
+    description: 'Compare Busy Basic, Standard & Enterprise prices in Nepal. Official dealer. Starting NPR 12,000/year. WhatsApp: 9851125905',
+    canonical: `${SITE_URL}/products`,
+  });
   return (
     <div className="bg-surface pt-20 pb-section-padding px-margin-desktop">
       <div className="max-w-container-max mx-auto">

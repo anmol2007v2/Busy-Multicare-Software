@@ -226,7 +226,7 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
                   type="submit"
                   className="group w-full bg-primary text-on-primary py-4 rounded-2xl font-bold text-label-md flex items-center justify-center gap-2 hover:shadow-xl hover:shadow-primary/25 hover:-translate-y-0.5 active:translate-y-0 transition-all"
                 >
-                  Send Inquiry
+                  Send Inquiry via WhatsApp
                   <ArrowRight
                     size={18}
                     className="group-hover:translate-x-1 transition-transform"

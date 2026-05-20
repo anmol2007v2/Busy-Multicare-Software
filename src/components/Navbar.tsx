@@ -15,6 +15,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import Logo from './Logo';
+import { handleInquiry } from '../utils/whatsapp';
 
 const navLinks = [
   { name: 'Home', path: '/', icon: Home },
@@ -28,11 +29,12 @@ const navLinks = [
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
   const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -138,14 +140,14 @@ const Navbar = () => {
               className="shrink-0 p-5 border-t border-surface-container bg-surface-container-low/50"
               style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom))' }}
             >
-              <Link
-                to="/products"
-                onClick={closeMenu}
-                className="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-4 rounded-2xl font-bold shadow-lg shadow-primary/25 active:scale-[0.98] transition-transform"
+              <button
+                type="button"
+                onClick={() => { closeMenu(); handleInquiry('Free Demo'); }}
+                className="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-4 rounded-2xl font-bold shadow-lg shadow-primary/25 active:scale-[0.98] transition-transform cursor-pointer"
               >
-                Get Started Now
+                Get Free Demo
                 <ArrowRight size={18} />
-              </Link>
+              </button>
             </div>
           </motion.div>
         </>
@@ -157,8 +159,8 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/80 backdrop-blur-lg border-b border-white/20 shadow-lg py-2'
-          : 'bg-transparent py-4'
+          ? 'bg-white/80 backdrop-blur-lg border-b border-white/20 shadow-lg py-3'
+          : 'bg-transparent py-6'
       }`}
     >
       <div className="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
@@ -166,20 +168,27 @@ const Navbar = () => {
           <Logo variant="nav" />
         </Link>
 
-        <div className="hidden md:flex items-center space-x-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`text-label-md px-4 py-2 rounded-full transition-all duration-200 ${
-                location.pathname === link.path
-                  ? 'bg-primary text-white shadow-md'
-                  : 'text-on-surface-variant hover:bg-primary/10 hover:text-primary'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+        <div className="hidden md:flex items-center gap-2">
+          {navLinks.map((link) => {
+            const isActive =
+              location.pathname === link.path ||
+              (link.path !== '/' && location.pathname.startsWith(link.path));
+            return (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`text-label-md px-4 py-2 rounded-full transition-all duration-200 ${
+                  isActive
+                    ? 'bg-primary text-white shadow-md'
+                    : 'text-on-surface-variant hover:bg-primary/10 hover:text-primary'
+                }`}
+              >
+                {link.name}
+              </Link>
+            );
+          })}
+
+          <button type="button" onClick={() => handleInquiry('Free Demo')} className="bg-primary text-on-primary px-5 py-2 rounded-full text-label-md font-semibold shadow-md cursor-pointer">Get Free Demo</button>
         </div>
 
         <div className="flex items-center md:hidden">

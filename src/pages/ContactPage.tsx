@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, Phone, Mail } from 'lucide-react';
 import Contact from '../components/Contact';
+import { useSEO } from '../hooks/useSEO';
+import { SITE_URL } from '../config/site';
 
 const QUICK_LINKS = [
   { icon: Phone, label: 'Call us', value: '9851125905', href: 'tel:+9779851125905' },
@@ -14,6 +16,12 @@ const QUICK_LINKS = [
 ];
 
 const ContactPage = () => {
+  useSEO({
+    title: 'Contact Busy Multicare Software Kathmandu | 9851125905',
+    description: 'Reach Busy Multicare in Kathmandu. Call or WhatsApp 9851125905 for demos, pricing & support. Sunday–Friday 10AM–6PM.',
+    canonical: `${SITE_URL}/contact`,
+  });
+
   return (
     <div className="bg-surface">
       {/* Support hero */}
