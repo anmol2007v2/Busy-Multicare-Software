@@ -6,27 +6,19 @@ import {
   Menu,
   X,
   ChevronRight,
-  Home,
-  Package,
-  Trophy,
-  Users,
-  Newspaper,
-  Headphones,
   ArrowRight,
 } from 'lucide-react';
 import Logo from './Logo';
 import { handleInquiry } from '../utils/whatsapp';
-
-const navLinks = [
-  { name: 'Home', path: '/', icon: Home },
-  { name: 'Products', path: '/products', icon: Package },
-  { name: 'Awards', path: '/awards', icon: Trophy },
-  { name: 'About Us', path: '/about', icon: Users },
-  { name: 'Blog', path: '/blog', icon: Newspaper },
-  { name: 'Support', path: '/contact', icon: Headphones },
-];
+import { useSiteContent } from '../hooks/useSiteContent';
+import { navIconForPath } from '../utils/navIcons';
 
 const Navbar = () => {
+  const { home } = useSiteContent();
+  const navLinks = home.navbar.links
+    .filter((l) => l.visible)
+    .sort((a, b) => a.order - b.order)
+    .map((l) => ({ name: l.name, path: l.path, icon: navIconForPath(l.path) }));
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 

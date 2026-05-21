@@ -1,16 +1,38 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { products } from '../data/products';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO';
 import { SITE_URL } from '../config/site';
+import { supabase } from '../config/supabase';
+import type { Product } from '../data/products';
+import { products as defaultProducts, filterCatalogProducts } from '../data/products';
 
 const ProductsPage = () => {
+  const [products, setProducts] = useState<Product[]>(defaultProducts);
+  const [loading, setLoading] = useState(true);
+
   useSEO({
     title: 'Busy Software Products & Prices Nepal | Busy Multicare',
     description: 'Compare Busy Basic, Standard & Enterprise prices in Nepal. Official dealer. Starting NPR 12,000/year. WhatsApp: 9851125905',
     canonical: `${SITE_URL}/products`,
   });
+
+  useEffect(() => {
+    async function fetchProducts() {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('created_at', { ascending: true });
+      
+      if (!error && data?.length) {
+        setProducts(filterCatalogProducts(data));
+      }
+      setLoading(false);
+    }
+    fetchProducts();
+  }, []);
+
   return (
     <div className="bg-surface pt-20 pb-section-padding px-margin-desktop">
       <div className="max-w-container-max mx-auto">
@@ -26,66 +48,72 @@ const ProductsPage = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {products.map((product, index) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-surface-container-lowest rounded-3xl p-8 border border-surface-container-high shadow-lg hover:shadow-2xl transition-all flex flex-col group relative overflow-hidden"
-            >
-              {/* Premium Glow Effect */}
-              <div className={`absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity ${
-                product.edition === 'Blue' ? 'bg-blue-500' : 
-                product.edition === 'Saffron' ? 'bg-orange-500' : 'bg-emerald-500'
-              }`}></div>
+        {loading && products.length === 0 ? (
+          <div className="text-center py-20 text-on-surface-variant">Loading products...</div>
+        ) : products.length === 0 ? (
+          <div className="text-center py-20 text-on-surface-variant">No products found.</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {products.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="bg-surface-container-lowest rounded-3xl p-8 border border-surface-container-high shadow-lg hover:shadow-2xl transition-all flex flex-col group relative overflow-hidden"
+              >
+                {/* Premium Glow Effect */}
+                <div className={`absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-10 group-hover:opacity-20 transition-opacity ${
+                  product.edition === 'Blue' ? 'bg-blue-500' :
+                  product.edition === 'Saffron' ? 'bg-orange-500' : 'bg-emerald-500'
+                }`}></div>
 
-              <div className="mb-8">
-                <span className={`px-4 py-1.5 rounded-full text-label-sm font-bold uppercase tracking-wider mb-6 inline-block ${
-                  product.edition === 'Blue' ? 'bg-blue-50 text-blue-700' : 
-                  product.edition === 'Saffron' ? 'bg-orange-50 text-orange-700' : 'bg-emerald-50 text-emerald-700'
-                }`}>
-                  {product.edition} Edition
-                </span>
-                <h3 className="text-headline-md text-on-background mb-2">{product.name}</h3>
-                <p className="text-on-surface-variant font-medium">{product.tagline}</p>
-              </div>
-
-              <div className="mb-8 flex-grow">
-                <ul className="space-y-4">
-                  {product.features.slice(0, 5).map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                      <span className="text-body-md text-on-surface-variant">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="pt-8 border-t border-surface-container mt-auto">
-                <div className="flex justify-between items-end mb-8">
-                  <div>
-                    <p className="text-label-sm text-outline mb-1">Starting from</p>
-                    <p className="text-headline-sm font-bold text-on-background">{product.prices.single}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-label-sm text-outline mb-1">Multi-user</p>
-                    <p className="text-headline-sm font-bold text-primary">{product.prices.multi}</p>
-                  </div>
+                <div className="mb-8">
+                  <span className={`px-4 py-1.5 rounded-full text-label-sm font-bold uppercase tracking-wider mb-6 inline-block ${
+                    product.edition === 'Blue' ? 'bg-blue-50 text-blue-700' :
+                    product.edition === 'Saffron' ? 'bg-orange-50 text-orange-700' : 'bg-emerald-50 text-emerald-700'
+                  }`}>
+                    {product.edition} Edition
+                  </span>
+                  <h3 className="text-headline-md text-on-background mb-2">{product.name}</h3>
+                  <p className="text-on-surface-variant font-medium">{product.tagline}</p>
                 </div>
 
-                <Link 
-                  to={`/product/${product.id}`}
-                  className="w-full bg-on-background text-surface-bright py-4 rounded-xl font-bold flex items-center justify-center gap-2 group-hover:bg-primary transition-all shadow-md active:scale-95"
-                >
-                  View Full Features <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                <div className="mb-8 flex-grow">
+                  <ul className="space-y-4">
+                    {product.features?.slice(0, 5).map((feature, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <span className="text-body-md text-on-surface-variant">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="pt-8 border-t border-surface-container mt-auto">
+                  <div className="flex justify-between items-end mb-8">
+                    <div>
+                      <p className="text-label-sm text-outline mb-1">Starting from</p>
+                      <p className="text-headline-sm font-bold text-on-background">{product.prices?.single || 'Contact us'}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-label-sm text-outline mb-1">Multi-user</p>
+                      <p className="text-headline-sm font-bold text-primary">{product.prices?.multi || 'Contact us'}</p>
+                    </div>
+                  </div>
+
+                  <Link 
+                    to={`/product/${product.id}`}
+                    className="w-full bg-on-background text-surface-bright py-4 rounded-xl font-bold flex items-center justify-center gap-2 group-hover:bg-primary transition-all shadow-md active:scale-95"
+                  >
+                    View Full Features <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* Comparison CTA */}
         <motion.div 

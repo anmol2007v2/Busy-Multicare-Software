@@ -1,10 +1,15 @@
 import { motion } from 'framer-motion';
+import { Trophy } from 'lucide-react';
 import Awards from '../components/Awards';
 import CountUp from '../components/CountUp';
 import { useSEO } from '../hooks/useSEO';
+import { useSiteContent } from '../hooks/useSiteContent';
 import { SITE_URL } from '../config/site';
 
 const AwardsPage = () => {
+  const { home } = useSiteContent();
+  const section = home.awardsSection;
+
   useSEO({
     title: 'Busy Multicare Awards & Recognition | Nepal BUSY Dealer',
     description:
@@ -23,14 +28,14 @@ const AwardsPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-8 shadow-inner"
           >
-            <span className="material-symbols-outlined text-display-hero">emoji_events</span>
+            <Trophy className="w-10 h-10" strokeWidth={1.75} aria-hidden />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-display-hero text-on-background mb-6"
           >
-            Award Winning Excellence
+            {section.title}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -38,7 +43,7 @@ const AwardsPage = () => {
             transition={{ delay: 0.1 }}
             className="text-body-lg text-on-surface-variant max-w-2xl mx-auto"
           >
-            Recognition of our commitment to quality, innovation, and outstanding service in the Nepalese IT sector.
+            {section.subtitle}
           </motion.p>
         </div>
       </header>

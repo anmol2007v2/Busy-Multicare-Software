@@ -1,23 +1,31 @@
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSEO, Schema } from '../hooks/useSEO';
-import { STORAGE_KEYS, SITE_URL } from '../config/site';
-import { getLocalStorage } from '../hooks/useLocalStorage';
+import { SITE_URL } from '../config/site';
+import { supabase } from '../config/supabase';
 import type { BlogPost } from '../admin/components/BlogManager';
 import { handleInquiry } from '../utils/whatsapp';
-
-const FALLBACK_POSTS: BlogPost[] = [
-  { id: 1, title: "The Visionary Behind Busy Multi Care", excerpt: "Founder's journey.", author: "Editorial", date: "2026-05-15", image: "/image/owner 1.svg", slug: "founder-story", category: "Founder's Story", content: "" },
-];
 
 export default function BlogDetailPage() {
   const { slug } = useParams();
   const [post, setPost] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const blogs = getLocalStorage<BlogPost[]>(STORAGE_KEYS.blogs, FALLBACK_POSTS);
-    const found = blogs.find((b) => b.slug === slug) ?? FALLBACK_POSTS.find((b) => b.slug === slug);
-    setPost(found ?? null);
+    async function fetchPost() {
+      if (!slug) return;
+      const { data, error } = await supabase
+        .from('blog_posts')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+      
+      if (!error && data) {
+        setPost(data);
+      }
+      setLoading(false);
+    }
+    fetchPost();
   }, [slug]);
 
   useSEO({
@@ -39,6 +47,10 @@ export default function BlogDetailPage() {
       : undefined,
   });
 
+  if (loading) {
+    return <div className="pt-32 pb-section-padding text-center px-6 text-on-surface-variant">Loading post...</div>;
+  }
+
   if (!post) {
     return (
       <div className="pt-32 pb-section-padding text-center px-6">
@@ -48,18 +60,40 @@ export default function BlogDetailPage() {
     );
   }
 
+  const gallery =
+    post.images && post.images.length > 0
+      ? post.images
+      : post.image
+        ? [post.image]
+        : [];
+
   return (
     <article className="pt-28 pb-section-padding px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto">
       <Link to="/blog" className="text-primary text-label-md font-semibold mb-6 inline-block">← Back to blog</Link>
-      {(post.images?.[0] || post.image) && (
-        <img
-          src={post.images?.[0] || post.image}
-          alt={post.title}
-          width={800}
-          height={450}
-          className="w-full rounded-2xl mb-8 object-cover"
-          loading="eager"
-        />
+      {gallery.length > 0 && (
+        <div className="mb-8 space-y-4">
+          <img
+            src={gallery[0]}
+            alt={post.title}
+            width={800}
+            height={450}
+            className="w-full rounded-2xl object-cover"
+            loading="eager"
+          />
+          {gallery.length > 1 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {gallery.slice(1).map((src, idx) => (
+                <img
+                  key={`${src}-${idx}`}
+                  src={src}
+                  alt={`${post.title} — image ${idx + 2}`}
+                  className="w-full aspect-video rounded-xl object-cover"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          )}
+        </div>
       )}
       <p className="text-label-sm text-on-surface-variant mb-2">{post.date} · {post.category}</p>
       <h1 className="text-headline-lg text-on-background mb-6">{post.title}</h1>

@@ -1,19 +1,40 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { STORAGE_KEYS } from '../../config/site';
-
-const EIGHT_HOURS = 8 * 60 * 60 * 1000;
+import { supabase } from '../../config/supabase';
 
 export function useAdminAuth() {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const auth = localStorage.getItem(STORAGE_KEYS.auth);
-    const authTime = parseInt(localStorage.getItem(STORAGE_KEYS.authTime) || '0', 10);
-    if (!auth || Date.now() - authTime > EIGHT_HOURS) {
-      localStorage.removeItem(STORAGE_KEYS.auth);
-      localStorage.removeItem(STORAGE_KEYS.authTime);
-      navigate('/admin');
+    let mounted = true;
+
+    async function checkAuth() {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (mounted) {
+        if (!session) {
+          navigate('/admin');
+        } else {
+          setIsAuthenticated(true);
+        }
+        setLoading(false);
+      }
     }
+
+    checkAuth();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session && mounted) {
+        navigate('/admin');
+      }
+    });
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, [navigate]);
+
+  return { loading, isAuthenticated };
 }

@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { products } from '../data/products';
 import { useSEO, Schema } from '../hooks/useSEO';
 import { SITE_URL } from '../config/site';
+import { supabase } from '../config/supabase';
+import type { Product } from '../data/products';
 import { 
   ArrowLeft, 
   Download, 
@@ -18,7 +19,39 @@ import {
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const product = products.find((p) => p.id === id);
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      if (!id) return;
+      
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .eq('id', id)
+          .single();
+        
+        if (!error && data) {
+          setProduct(data);
+        } else {
+          // Fallback to static product data if not found in DB
+          const { products: defaultProducts } = await import('../data/products');
+          const staticProduct = defaultProducts.find(p => p.id === id);
+          if (staticProduct) setProduct(staticProduct);
+        }
+      } catch (err) {
+        // Fallback on any error (like missing table)
+        const { products: defaultProducts } = await import('../data/products');
+        const staticProduct = defaultProducts.find(p => p.id === id);
+        if (staticProduct) setProduct(staticProduct);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchProduct();
+  }, [id]);
 
   useSEO({
     title: product ? `${product.name} | BUSY Software Nepal` : 'Product Not Found',
@@ -29,14 +62,14 @@ const ProductDetailPage = () => {
     ogType: 'product',
     ogImage: product ? `${SITE_URL}${product.image}` : undefined,
     keywords: product
-      ? `${product.name.toLowerCase()} nepal, busy ${product.name.toLowerCase()}, busy software price nepal, ${product.edition.toLowerCase()} edition busy`
+      ? `${product.name?.toLowerCase()} nepal, busy ${product.name?.toLowerCase()}, busy software price nepal, ${product.edition?.toLowerCase()} edition busy`
       : 'busy software nepal, busy accounting software nepal',
     structuredData: product
       ? Schema.product({
           name: product.name,
           description: product.description,
           image: `${SITE_URL}${product.image}`,
-          price: product.prices.single.replace('NRS ', '').replace(',', ''),
+          price: product.prices?.single?.replace('NRS ', '')?.replace(',', '') || '0',
           currency: 'NPR',
           rating: 4.8,
           reviewCount: 120,
@@ -46,9 +79,10 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [id]);
 
-  if (!product) return <div>Product not found</div>;
+  if (loading) return <div className="pt-32 text-center text-on-surface-variant">Loading product details...</div>;
+  if (!product) return <div className="pt-32 text-center text-on-surface-variant">Product not found</div>;
 
   return (
     <div className="bg-surface pb-section-padding">
@@ -109,7 +143,7 @@ const ProductDetailPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {product.features.map((feature, i) => (
+            {product.features?.map((feature, i) => (
               <motion.div 
                 key={i}
                 whileHover={{ y: -5 }}

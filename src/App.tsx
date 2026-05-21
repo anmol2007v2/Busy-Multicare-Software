@@ -9,11 +9,17 @@ import BlogDetailPage from './pages/BlogDetailPage';
 import AboutUsPage from './pages/AboutUsPage';
 import AwardsPage from './pages/AwardsPage';
 import NotFoundPage from './pages/NotFoundPage';
-import AdminLoginPage from './pages/admin/AdminLoginPage';
-import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import PrivacyPolicyPage from './pages/legal/PrivacyPolicyPage';
 import TermsPage from './pages/legal/TermsPage';
 import RefundPolicyPage from './pages/legal/RefundPolicyPage';
+import AdminLoginPage from './pages/admin/AdminLoginPage';
+import AdminLayout from './admin/layout/AdminLayout';
+import AdminOverview from './admin/pages/AdminOverview';
+import BlogManager from './admin/components/BlogManager';
+import AwardsManager from './admin/components/AwardsManager';
+import ProductManager from './admin/components/ProductManager';
+import SiteContentManager from './admin/components/SiteContentManager';
+import SettingsManager from './admin/components/SettingsManager';
 
 function App() {
   return (
@@ -21,7 +27,14 @@ function App() {
       <div className="min-h-screen bg-surface selection:bg-primary/20 selection:text-primary flex flex-col">
         <Routes>
           <Route path="/admin" element={<AdminLoginPage />} />
-          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          <Route path="/admin/dashboard" element={<AdminLayout />}>
+            <Route index element={<AdminOverview />} />
+            <Route path="blogs" element={<BlogManager />} />
+            <Route path="awards" element={<AwardsManager />} />
+            <Route path="products" element={<ProductManager />} />
+            <Route path="site" element={<SiteContentManager />} />
+            <Route path="settings" element={<SettingsManager />} />
+          </Route>
           <Route element={<PublicLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductsPage />} />

@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react';
+import { useSiteContent } from '../hooks/useSiteContent';
 import { motion } from 'framer-motion';
 import {
   User,
@@ -21,40 +22,6 @@ const BUSINESS_TYPES = [
   'Others',
 ] as const;
 
-const CONTACT_INFO = [
-  {
-    icon: MapPin,
-    title: 'Head Office',
-    desc: 'Putalisadak, Kathmandu, Nepal',
-    href: 'https://maps.google.com/?q=Busy+Multi+Care+Pvt+Ltd+Putalisadak',
-  },
-  {
-    icon: Phone,
-    title: 'Phone Support',
-    desc: '9851125905 · 9802025905',
-    href: 'tel:+9779851125905',
-  },
-  {
-    icon: Mail,
-    title: 'Email Us',
-    desc: 'busyedu@gmail.com',
-    href: 'mailto:busyedu@gmail.com',
-  },
-  {
-    icon: Clock,
-    title: 'Working Hours',
-    desc: 'Sun – Fri: 10:00 – 18:00',
-  },
-];
-
-const TRUST_POINTS = [
-  'Free consultation',
-  'Response within 24 hours',
-  'IRD-approved solutions',
-];
-
-const WHATSAPP_NUMBER = '9779851125905';
-
 type ContactProps = {
   variant?: 'home' | 'page';
 };
@@ -63,7 +30,16 @@ const inputBase =
   'w-full bg-white border border-outline-variant/60 rounded-2xl py-3.5 pl-12 pr-4 text-body-md text-on-background placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none transition-all';
 
 const Contact = ({ variant = 'home' }: ContactProps) => {
+  const { home, global } = useSiteContent();
+  const c = home.contact;
   const [businessType, setBusinessType] = useState<string>(BUSINESS_TYPES[0]);
+
+  const contactInfo = [
+    { icon: MapPin, title: 'Head Office', desc: global.address, href: 'https://maps.google.com/?q=Busy+Multi+Care+Pvt+Ltd+Putalisadak' },
+    { icon: Phone, title: 'Phone Support', desc: global.phoneRaw, href: `tel:+${global.whatsappNumber}` },
+    { icon: Mail, title: 'Email Us', desc: global.emailAlt, href: `mailto:${global.emailAlt}` },
+    { icon: Clock, title: 'Working Hours', desc: global.workingHours },
+  ];
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -80,7 +56,7 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
         `Message: ${message}`
     );
 
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank', 'noopener,noreferrer');
+    window.open(`https://wa.me/${global.whatsappNumber}?text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
   const sectionPadding = variant === 'page' ? 'pb-section-padding' : 'py-section-padding';
@@ -101,16 +77,14 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
         <div className="text-center max-w-2xl mx-auto mb-14 md:mb-16">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-label-sm font-semibold uppercase tracking-wider mb-5">
             <Headphones size={16} />
-            {variant === 'page' ? 'Support Center' : 'Contact Us'}
+            {variant === 'page' ? 'Support Center' : c.eyebrow}
           </span>
           <h2 className="text-headline-lg-mobile md:text-headline-lg text-on-background mb-4">
-            Get In <span className="text-primary">Touch</span>
+            {c.title} <span className="text-primary">{c.titleHighlight}</span>
           </h2>
-          <p className="text-body-lg text-on-surface-variant">
-            Tell us about your business. Our team will recommend the right Busy solution and guide you through setup.
-          </p>
+          <p className="text-body-lg text-on-surface-variant">{c.subtitle}</p>
           <div className="flex flex-wrap justify-center gap-3 mt-6">
-            {TRUST_POINTS.map((point) => (
+            {c.trustPoints.map((point) => (
               <span
                 key={point}
                 className="inline-flex items-center gap-1.5 text-label-sm text-on-surface-variant bg-surface-container-low px-3 py-1.5 rounded-full"
@@ -136,8 +110,8 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
 
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <h3 className="text-headline-sm text-on-background">Send an inquiry</h3>
-                  <p className="text-label-sm text-on-surface-variant mt-1">We&apos;ll get back to you shortly</p>
+                  <h3 className="text-headline-sm text-on-background">{c.formTitle}</h3>
+                  <p className="text-label-sm text-on-surface-variant mt-1">{c.formSubtitle}</p>
                 </div>
                 <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
                   <Send size={22} />
@@ -257,7 +231,7 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {CONTACT_INFO.map((item, i) => {
+              {contactInfo.map((item, i) => {
                 const Icon = item.icon;
                 const content = (
                   <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-outline-variant/25 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full group/card">
