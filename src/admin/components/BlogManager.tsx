@@ -7,7 +7,8 @@ export interface BlogPost {
   id: number;
   title: string;
   excerpt: string;
-  image: string;
+  image?: string;
+  images?: string[];
   date: string;
   slug: string;
   category?: string;
@@ -15,12 +16,23 @@ export interface BlogPost {
   author?: string;
 }
 
-const EMPTY_FORM = { title: '', excerpt: '', image: '', date: '', slug: '', category: 'Accounting Tips', content: '' };
+type BlogPostForm = {
+  title: string;
+  excerpt: string;
+  image: string;
+  images: string[];
+  date: string;
+  slug: string;
+  category: string;
+  content: string;
+};
+
+const EMPTY_FORM: BlogPostForm = { title: '', excerpt: '', image: '', images: [], date: '', slug: '', category: 'Accounting Tips', content: '' };
 
 export default function BlogManager() {
   const { get, set } = useLocalData<BlogPost[]>(STORAGE_KEYS.blogs, []);
   const [blogs, setBlogs] = useState(get());
-  const [form, setForm] = useState(EMPTY_FORM);
+  const [form, setForm] = useState<BlogPostForm>(EMPTY_FORM);
   const [editing, setEditing] = useState<number | null>(null);
 
   const save = (data: BlogPost[]) => {
@@ -30,11 +42,14 @@ export default function BlogManager() {
 
   const handleSubmit = () => {
     if (!form.title || !form.excerpt) return alert('Title and excerpt are required.');
+    const images = form.images?.length ? form.images : form.image ? [form.image] : [];
     const entry: BlogPost = {
       ...form,
       id: editing ?? Date.now(),
       date: form.date || new Date().toISOString().split('T')[0],
       slug: form.slug || form.title.toLowerCase().replace(/\s+/g, '-'),
+      image: images[0] || form.image || '',
+      images,
     };
     if (editing !== null) {
       save(blogs.map((b) => (b.id === editing ? entry : b)));
@@ -51,11 +66,13 @@ export default function BlogManager() {
   };
 
   const handleEdit = (blog: BlogPost) => {
+    const existingImages = blog.images?.length ? blog.images : blog.image ? [blog.image] : [];
     setEditing(blog.id);
     setForm({
       title: blog.title,
       excerpt: blog.excerpt,
-      image: blog.image,
+      image: blog.image || existingImages[0] || '',
+      images: existingImages,
       date: blog.date,
       slug: blog.slug,
       category: blog.category || 'Accounting Tips',
@@ -78,8 +95,23 @@ export default function BlogManager() {
           <textarea placeholder="Excerpt *" value={form.excerpt} onChange={(e) => setForm({ ...form, excerpt: e.target.value })} rows={3} className="border rounded-lg px-3 py-2 w-full" />
           <textarea placeholder="Full content (HTML supported)" value={form.content} onChange={(e) => setForm({ ...form, content: e.target.value })} rows={6} className="border rounded-lg px-3 py-2 w-full font-mono text-sm" />
           <input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} className="border rounded-lg px-3 py-2 w-full" />
-          <ImageUploader label="Blog Cover Image" onUpload={(img) => setForm({ ...form, image: img })} />
-          {form.image && <img src={form.image} alt="Preview" className="h-32 object-cover rounded-lg" />}
+          <ImageUploader
+            label="Blog Cover Image(s)"
+            onUpload={(img) =>
+              setForm({
+                ...form,
+                images: typeof img === 'string' ? [img] : img,
+                image: typeof img === 'string' ? img : img[0],
+              })
+            }
+          />
+          {form.images?.length ? (
+            <div className="grid grid-cols-2 gap-2">
+              {form.images.map((src, index) => (
+                <img key={index} src={src} alt={`Preview ${index + 1}`} className="h-32 object-cover rounded-lg w-full" />
+              ))}
+            </div>
+          ) : null}
         </div>
         <div className="flex gap-3 mt-4">
           <button type="button" onClick={handleSubmit} className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
@@ -96,7 +128,9 @@ export default function BlogManager() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {blogs.map((blog) => (
           <div key={blog.id} className="bg-white rounded-xl shadow-sm overflow-hidden">
-            {blog.image && <img src={blog.image} alt={blog.title} className="w-full h-40 object-cover" />}
+            {(blog.images?.[0] || blog.image) && (
+              <img src={blog.images?.[0] || blog.image} alt={blog.title} className="w-full h-40 object-cover" />
+            )}
             <div className="p-4">
               <p className="text-xs text-gray-400">{blog.date}</p>
               <h3 className="font-bold text-gray-800">{blog.title}</h3>

@@ -29,7 +29,9 @@ export default function BlogDetailPage() {
       ? Schema.article({
           title: post.title,
           description: post.excerpt,
-          image: post.image.startsWith('http') ? post.image : `${SITE_URL}${post.image}`,
+          image: (post.images?.[0] || post.image || '').startsWith('http')
+            ? post.images?.[0] || post.image || ''
+            : `${SITE_URL}${post.images?.[0] || post.image}`,
           author: 'Busy Multicare',
           publishedTime: post.date,
           url: `/blog/${post.slug}`,
@@ -49,7 +51,16 @@ export default function BlogDetailPage() {
   return (
     <article className="pt-28 pb-section-padding px-margin-mobile md:px-margin-desktop max-w-3xl mx-auto">
       <Link to="/blog" className="text-primary text-label-md font-semibold mb-6 inline-block">← Back to blog</Link>
-      {post.image && <img src={post.image} alt={post.title} width={800} height={450} className="w-full rounded-2xl mb-8 object-cover" loading="eager" />}
+      {(post.images?.[0] || post.image) && (
+        <img
+          src={post.images?.[0] || post.image}
+          alt={post.title}
+          width={800}
+          height={450}
+          className="w-full rounded-2xl mb-8 object-cover"
+          loading="eager"
+        />
+      )}
       <p className="text-label-sm text-on-surface-variant mb-2">{post.date} · {post.category}</p>
       <h1 className="text-headline-lg text-on-background mb-6">{post.title}</h1>
       {post.content ? (

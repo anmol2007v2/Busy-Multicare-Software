@@ -138,7 +138,7 @@ const BlogPage = () => {
               <Link to={`/blog/${post.slug || post.id}`} className="block cursor-pointer">
               <div className="rounded-3xl overflow-hidden mb-6 aspect-video shadow-lg relative">
                 <img 
-                  src={post.image} 
+                  src={post.images?.[0] || post.image} 
                   alt={post.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />

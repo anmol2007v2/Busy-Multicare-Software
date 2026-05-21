@@ -34,19 +34,24 @@ const Awards = () => {
           <p className="text-center text-on-surface-variant py-12">Awards coming soon.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {awards.map((award) => (
-              <motion.button
-                key={award.id}
-                type="button"
-                whileHover={{ y: -10 }}
-                onClick={() => setLightbox(award.image)}
-                className="bg-surface-container-lowest p-4 rounded-2xl shadow-sm hover:shadow-xl transition-all text-left cursor-pointer"
-              >
-                <img alt={`${award.title} award - Busy Multicare Nepal`} className="w-full h-64 object-cover rounded-xl mb-4" src={award.image} width={400} height={256} loading="lazy" />
-                <h4 className="text-headline-sm text-on-background">{award.title}</h4>
-                {award.year && <p className="text-label-md text-primary font-bold">{award.year}</p>}
-              </motion.button>
-            ))}
+            {awards.map((award) => {
+              const imageSrc = award.images?.[0] || award.image;
+              return (
+                <motion.button
+                  key={award.id}
+                  type="button"
+                  whileHover={{ y: -10 }}
+                  onClick={() => imageSrc && setLightbox(imageSrc)}
+                  className="bg-surface-container-lowest p-4 rounded-2xl shadow-sm hover:shadow-xl transition-all text-left cursor-pointer"
+                >
+                  {imageSrc && (
+                    <img alt={`${award.title} award - Busy Multicare Nepal`} className="w-full h-64 object-cover rounded-xl mb-4" src={imageSrc} width={400} height={256} loading="lazy" />
+                  )}
+                  <h4 className="text-headline-sm text-on-background">{award.title}</h4>
+                  {award.year && <p className="text-label-md text-primary font-bold">{award.year}</p>}
+                </motion.button>
+              );
+            })}
           </div>
         )}
       </div>

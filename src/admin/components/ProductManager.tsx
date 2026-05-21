@@ -1,19 +1,19 @@
 import { useState } from 'react';
-import { useLocalData } from '../hooks/useLocalData';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { DEFAULT_ADMIN_PRODUCTS, type AdminProduct } from '../../data/defaultProducts';
 import { STORAGE_KEYS } from '../../config/site';
 
 export default function ProductManager() {
-  const { get, set } = useLocalData<AdminProduct[]>(STORAGE_KEYS.products, DEFAULT_ADMIN_PRODUCTS);
-  const [products, setProducts] = useState(get());
+  const [products, setProducts] = useLocalStorage<AdminProduct[]>(STORAGE_KEYS.products, DEFAULT_ADMIN_PRODUCTS);
   const [saved, setSaved] = useState(false);
 
   const updatePrice = (id: number, newPrice: string) => {
-    setProducts((prev) => prev.map((p) => (p.id === id ? { ...p, price: Number(newPrice) } : p)));
+    const price = Number(newPrice);
+    if (Number.isNaN(price)) return;
+    setProducts((prev) => prev.map((p) => (p.id === id ? { ...p, price } : p)));
   };
 
   const handleSave = () => {
-    set(products);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
