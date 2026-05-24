@@ -6,7 +6,7 @@
 
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { SITE_URL, SITE_NAME, COMPANY_NAME, PHONE_TEL, SOCIAL } from '../config/site';
+import { SITE_URL, SITE_NAME, COMPANY_NAME } from '../config/site';
 
 const BREADCRUMB_MAP: Record<string, { name: string; position: number }[]> = {
   '/': [{ name: 'Home', position: 1 }],

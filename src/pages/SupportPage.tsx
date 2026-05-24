@@ -12,7 +12,7 @@ import {
   Clock 
 } from 'lucide-react';
 import { useSEO, Schema } from '../hooks/useSEO';
-import { SITE_URL, PHONE_DISPLAY, EMAIL, WORKING_HOURS } from '../config/site';
+import { SITE_URL, PHONE_DISPLAY, WORKING_HOURS } from '../config/site';
 import { handleInquiry } from '../utils/whatsapp';
 
 const SUPPORT_FAQS = [
