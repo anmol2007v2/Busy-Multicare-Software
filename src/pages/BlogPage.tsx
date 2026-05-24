@@ -14,8 +14,8 @@ const BlogPage = () => {
   const [loading, setLoading] = useState(true);
 
   useSEO({
-    title: 'Founder & Team Stories | Busy Multicare Blog',
-    description: 'Founder stories, team updates, and software news from Nepal\'s authorized Busy dealer.',
+    title: 'Busy Multicare Software Blog & News',
+    description: 'Official blog of Busy Multicare Software. Founder stories, software updates, VAT & tax compliance tips, and accounting tutorials for Nepal businesses.',
     canonical: `${SITE_URL}/blog`,
   });
 

@@ -13,8 +13,8 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useSEO({
-    title: 'Busy Software Products & Prices Nepal | Busy Multicare',
-    description: 'Compare Busy Basic, Standard & Enterprise prices in Nepal. Official dealer. Starting NPR 12,000/year. WhatsApp: 9851125905',
+    title: 'Busy Software Plans & Pricing Nepal | Basic, Standard, Enterprise',
+    description: 'Compare Busy Software plans for Nepal businesses. Basic from Rs.12,000, Standard & Enterprise also available. GST-ready, POS, inventory & payroll included.',
     canonical: `${SITE_URL}/products`,
   });
 
@@ -42,7 +42,7 @@ const ProductsPage = () => {
           className="text-center mb-20"
         >
           <span className="text-primary font-bold uppercase tracking-widest text-label-sm mb-4 block">Our Software Solutions</span>
-          <h1 className="text-display-hero text-on-background mb-6">Choose the perfect BUSY for your business</h1>
+          <h1 className="text-display-hero text-on-background mb-6">Busy Accounting Software Plans &amp; Pricing in Nepal</h1>
           <p className="text-body-lg text-on-surface-variant max-w-2xl mx-auto">
             From small retail shops to large manufacturing units, we have a specialized edition designed to streamline your operations.
           </p>

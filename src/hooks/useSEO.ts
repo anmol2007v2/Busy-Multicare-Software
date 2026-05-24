@@ -73,7 +73,7 @@ export function useSEO({
   article,
 }: SEOProps) {
   useEffect(() => {
-    const fullTitle = title.includes(SITE_NAME)
+    const fullTitle = title.includes('Multicare') || title.includes(SITE_NAME)
       ? title
       : `${title} | ${SITE_NAME}`;
 

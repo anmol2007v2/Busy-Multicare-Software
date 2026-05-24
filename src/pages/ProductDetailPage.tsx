@@ -54,7 +54,7 @@ const ProductDetailPage = () => {
   }, [id]);
 
   useSEO({
-    title: product ? `${product.name} | BUSY Software Nepal` : 'Product Not Found',
+    title: product ? `${product.name} Price & Specs | Multicare` : 'Product Not Found',
     description: product
       ? product.description
       : 'BUSY product details from Busy Multicare Software in Nepal.',

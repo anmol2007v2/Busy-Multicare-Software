@@ -1,4 +1,4 @@
-import type { GlobalSiteContent, HomeSiteContent } from '../types/siteContent';
+﻿import type { GlobalSiteContent, HomeSiteContent } from '../types/siteContent';
 
 export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
   navbar: {
@@ -8,13 +8,13 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
       { name: 'Awards', path: '/awards', visible: true, order: 2 },
       { name: 'About Us', path: '/about', visible: true, order: 3 },
       { name: 'Blog', path: '/blog', visible: true, order: 4 },
-      { name: 'Support', path: '/contact', visible: true, order: 5 },
+      { name: 'Support', path: '/support', visible: true, order: 5 },
     ],
   },
   hero: {
     badge: 'Official Busy Partner Nepal',
     titleHighlight: 'Busy Accounting Software',
-    titleRest: ' Nepal — Business Automation You Can Trust',
+    titleRest: ' Nepal - Official Dealer in Kathmandu',
     subtitle:
       'Empowering 10,000+ businesses with IRD-approved accounting, VAT billing, inventory & cloud solutions.',
     phoneLabel: 'Call / WhatsApp:',
@@ -78,7 +78,7 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
   awardsSection: {
     title: 'Recognized Excellence',
     subtitle: "International recognition as Nepal's leading Busy software partner.",
-    linkLabel: 'View all awards →',
+    linkLabel: 'View all awards â†’',
   },
   exhibitions: {
     title: 'At the Forefront of Innovation',
@@ -114,7 +114,7 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
     articles: [
       {
         title: 'Why Choose Busy Accounting Software for Your Nepal Business',
-        body: 'Busy accounting software Nepal is the trusted choice for SMEs and enterprises managing VAT, inventory, and payroll under IRD rules. As an authorized dealer, Busy Multicare offers competitive busy software price Nepal packages from NPR 12,000/year — with local installation, Nepali-language support, and IRD VAT compatible reporting.',
+        body: 'Busy accounting software Nepal is the trusted choice for SMEs and enterprises managing VAT, inventory, and payroll under IRD rules. As an authorized dealer, Busy Multicare offers competitive busy software price Nepal packages from NPR 12,000/year â€” with local installation, Nepali-language support, and IRD VAT compatible reporting.',
       },
       {
         title: 'Busy Software Features for Nepal Businesses',
@@ -135,7 +135,7 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
       { q: 'Where can I buy Busy software in Kathmandu?', a: 'Busy Multicare Software Pvt. Ltd. is an authorized Busy software dealer in Kathmandu, Nepal.' },
       { q: "Does Busy accounting software support Nepal VAT and tax formats?", a: "Yes, Busy software is fully compatible with Nepal's VAT system, IRD requirements, and Nepali fiscal year (Bikram Sambat)." },
       { q: 'Is there a free demo of Busy software available?', a: 'Yes! We offer a free demo of all Busy software products. WhatsApp us to schedule your free demo today.' },
-      { q: 'What support is provided after buying Busy software?', a: 'We provide installation support, staff training, annual maintenance, and ongoing WhatsApp/phone support. Sunday–Friday, 10 AM–6 PM.' },
+      { q: 'What support is provided after buying Busy software?', a: 'We provide installation support, staff training, annual maintenance, and ongoing WhatsApp/phone support. Sundayâ€“Friday, 10 AMâ€“6 PM.' },
     ],
   },
   footer: {
@@ -177,7 +177,7 @@ export const DEFAULT_GLOBAL_CONTENT: GlobalSiteContent = {
   email: 'info@busymulticare.com',
   emailAlt: 'busyedu@gmail.com',
   address: 'Putalisadak, Kathmandu, Nepal',
-  workingHours: 'Sun – Fri: 10:00 – 18:00',
+  workingHours: 'Sun â€“ Fri: 10:00 â€“ 18:00',
   whatsappNumber: '9779851125905',
   social: {
     facebook: 'https://www.facebook.com/p/Busy-Multi-Care-Pvt-Ltd-100063584352392/',
@@ -223,3 +223,4 @@ export function mergeGlobalContent(partial: Partial<GlobalSiteContent> | null | 
     social: { ...DEFAULT_GLOBAL_CONTENT.social, ...partial.social },
   };
 }
+

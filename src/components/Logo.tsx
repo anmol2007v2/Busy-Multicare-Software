@@ -10,7 +10,7 @@ const variantClasses = {
 
 const Logo = ({ className = '', variant = 'nav' }: LogoProps) => (
   <img
-    src="/logo.png"
+    src="/new logo.png"
     alt="Busy Multi Care"
     className={`${variantClasses[variant]} ${className}`.trim()}
   />

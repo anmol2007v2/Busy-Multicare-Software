@@ -1,6 +1,7 @@
-User-agent: *
+﻿User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /admin/*
+
+Disallow: /admin/
+Disallow: /api/
 
 Sitemap: https://busymulticare.com/sitemap.xml

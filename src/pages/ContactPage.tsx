@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { MessageCircle, Phone, Mail } from 'lucide-react';
 import Contact from '../components/Contact';
 import { useSEO } from '../hooks/useSEO';
-import { SITE_URL } from '../config/site';
+import { SITE_URL, COMPANY_NAME, PHONE_DISPLAY, EMAIL, ADDRESS } from '../config/site';
 
 const QUICK_LINKS = [
   { icon: Phone, label: 'Call us', value: '9851125905', href: 'tel:+9779851125905' },
@@ -17,8 +17,8 @@ const QUICK_LINKS = [
 
 const ContactPage = () => {
   useSEO({
-    title: 'Contact Busy Multicare Software Kathmandu | 9851125905',
-    description: 'Reach Busy Multicare in Kathmandu. Call or WhatsApp 9851125905 for demos, pricing & support. Sunday–Friday 10AM–6PM.',
+    title: 'Contact Busy Multicare Software Nepal | Kathmandu Office',
+    description: 'Reach Busy Multicare in Kathmandu. Call +977-9851125905 for official Busy accounting software demos, pricing, installation & training support.',
     canonical: `${SITE_URL}/contact`,
   });
 
@@ -53,7 +53,7 @@ const ContactPage = () => {
               Support
             </span>
             <h1 className="text-headline-lg-mobile md:text-headline-lg text-on-background mb-5">
-              We&apos;re here to <span className="text-primary">help</span>
+              Contact Busy Multicare Software in Kathmandu
             </h1>
             <p className="text-body-lg text-on-surface-variant max-w-xl">
               Get expert guidance on Busy accounting, VAT compliance, and cloud solutions. Reach out by form, phone, or visit our Kathmandu office.
@@ -91,6 +91,31 @@ const ContactPage = () => {
       </header>
 
       <Contact variant="page" />
+
+      {/* Crawlable Semantic NAP Address Block for SEO */}
+      <section className="bg-surface-container-low py-12 px-margin-mobile md:px-margin-desktop border-t border-outline-variant/10">
+        <div className="max-w-container-max mx-auto text-center md:text-left">
+          <h2 className="text-label-sm font-semibold text-outline uppercase tracking-wider mb-4">Official Business Registration &amp; Details</h2>
+          <address className="not-italic text-body-md text-on-surface-variant/80 space-y-2 grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div>
+              <p className="font-bold text-on-background text-label-md">Company Name</p>
+              <p>{COMPANY_NAME}</p>
+            </div>
+            <div>
+              <p className="font-bold text-on-background text-label-md">Physical Address</p>
+              <p>{ADDRESS}</p>
+            </div>
+            <div>
+              <p className="font-bold text-on-background text-label-md">Phone Support</p>
+              <p><a href="tel:+9779851125905" className="hover:text-primary transition-colors">{PHONE_DISPLAY}</a></p>
+            </div>
+            <div>
+              <p className="font-bold text-on-background text-label-md">Email Address</p>
+              <p><a href={`mailto:${EMAIL}`} className="hover:text-primary transition-colors">{EMAIL}</a></p>
+            </div>
+          </address>
+        </div>
+      </section>
     </div>
   );
 };

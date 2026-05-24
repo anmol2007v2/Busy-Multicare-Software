@@ -29,7 +29,7 @@ export default function BlogDetailPage() {
   }, [slug]);
 
   useSEO({
-    title: post?.title ?? 'Blog Post',
+    title: post ? `${post.title} | Multicare` : 'Blog Post',
     description: post?.excerpt ?? 'Busy Multicare blog',
     canonical: `${SITE_URL}/blog/${slug}`,
     ogType: 'article',
