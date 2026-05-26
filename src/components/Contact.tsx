@@ -34,8 +34,24 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
   const c = home.contact;
   const [businessType, setBusinessType] = useState<string>(BUSINESS_TYPES[0]);
 
+  const mapsLink =
+    'https://www.google.com/maps/place/Busy+Multi+Care+Pvt+Ltd+(SOLE+DISTRIBUTOR+For+NEPAL)/@27.699286,85.312936,17z/data=!4m6!3m5!1s0x39eb1855a4438069:0x47f304a1d7cdd5ae!8m2!3d27.6992866!4d85.3129322!16s%2Fg%2F11b6lk7l5b?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D';
+
   const contactInfo = [
-    { icon: MapPin, title: 'Head Office', desc: global.address, href: 'https://maps.google.com/?q=Busy+Multi+Care+Pvt+Ltd+Putalisadak' },
+    {
+      icon: MapPin,
+      title: 'Head Office',
+      desc: (
+        <span className="inline-flex flex-wrap items-center gap-1">
+          {global.address}{' '}
+          <span className="inline-flex items-center gap-1 text-primary font-semibold">
+            <MapPin size={14} />
+            Adwait Marg (near Kathmandu Model Hospital)
+          </span>
+        </span>
+      ),
+      href: mapsLink,
+    },
     { icon: Phone, title: 'Phone Support', desc: global.phoneRaw, href: `tel:+${global.whatsappNumber}` },
     { icon: Mail, title: 'Email Us', desc: global.emailAlt, href: `mailto:${global.emailAlt}` },
     { icon: Clock, title: 'Working Hours', desc: global.workingHours },

@@ -3,7 +3,8 @@ import { motion } from 'framer-motion';
 import { ArrowRight, PlayCircle } from 'lucide-react';
 import { useSiteContent } from '../hooks/useSiteContent';
 import { YOUTUBE_DEMO } from '../config/site';
-import { handleInquiry } from '../utils/whatsapp';
+
+const FREE_TRIAL_URL = 'https://u.pcloud.link/publink/show?code=XZjoltXZGKwEJFIbcmLJWhmvRy3V5F1enGzk';
 
 const Hero = () => {
   const { home, global } = useSiteContent();
@@ -29,10 +30,15 @@ const Hero = () => {
             </a>
           </p>
           <div className="flex flex-wrap gap-4 mb-12">
-            <button type="button" onClick={() => handleInquiry('Busy Accounting Software')} className="bg-primary text-on-primary px-8 py-4 rounded-xl text-label-md font-semibold hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2 cursor-pointer">
+            <a
+              href={FREE_TRIAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-on-primary px-8 py-4 rounded-xl text-label-md font-semibold hover:shadow-xl hover:-translate-y-1 transition-all flex items-center gap-2 cursor-pointer justify-center"
+            >
               {h.ctaPrimary}
               <ArrowRight className="w-5 h-5 shrink-0" aria-hidden />
-            </button>
+            </a>
             <button type="button" onClick={() => setShowVideo(true)} className="bg-surface-container-lowest border border-outline-variant text-on-surface px-8 py-4 rounded-xl text-label-md font-semibold hover:bg-surface hover:-translate-y-1 transition-all flex items-center gap-2 cursor-pointer">
               {h.ctaSecondary}
               <PlayCircle className="w-5 h-5 shrink-0" aria-hidden />

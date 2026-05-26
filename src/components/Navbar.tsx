@@ -9,9 +9,10 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import Logo from './Logo';
-import { handleInquiry } from '../utils/whatsapp';
 import { useSiteContent } from '../hooks/useSiteContent';
 import { navIconForPath } from '../utils/navIcons';
+
+const FREE_TRIAL_URL = 'https://u.pcloud.link/publink/show?code=XZjoltXZGKwEJFIbcmLJWhmvRy3V5F1enGzk';
 
 const Navbar = () => {
   const { home } = useSiteContent();
@@ -132,14 +133,16 @@ const Navbar = () => {
               className="shrink-0 p-5 border-t border-surface-container bg-surface-container-low/50"
               style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom))' }}
             >
-              <button
-                type="button"
-                onClick={() => { closeMenu(); handleInquiry('Free Demo'); }}
-                className="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-4 rounded-2xl font-bold shadow-lg shadow-primary/25 active:scale-[0.98] transition-transform cursor-pointer"
+              <a
+                href={FREE_TRIAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-4 rounded-2xl font-bold shadow-lg shadow-primary/25 active:scale-[0.98] transition-transform cursor-pointer text-center"
               >
                 Get Free Demo
                 <ArrowRight size={18} />
-              </button>
+              </a>
             </div>
           </motion.div>
         </>
@@ -180,7 +183,15 @@ const Navbar = () => {
             );
           })}
 
-          <button type="button" onClick={() => handleInquiry('Free Demo')} className="bg-primary text-on-primary px-5 py-2 rounded-full text-label-md font-semibold shadow-md cursor-pointer">Get Free Demo</button>
+          <a
+            href={FREE_TRIAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-primary text-on-primary px-5 py-2 rounded-full text-label-md font-semibold shadow-md cursor-pointer inline-flex items-center justify-center gap-2"
+          >
+            Get Free Demo
+            <ArrowRight size={16} />
+          </a>
         </div>
 
         <div className="flex items-center md:hidden">

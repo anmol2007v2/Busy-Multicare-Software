@@ -4,7 +4,7 @@ import { Check } from 'lucide-react';
 import { useSiteContent } from '../hooks/useSiteContent';
 import { supabase } from '../config/supabase';
 import type { Product } from '../data/products';
-import { products as defaultProducts, filterCatalogProducts } from '../data/products';
+import { products as defaultProducts, mergeCatalogWithDb, filterCatalogProducts } from '../data/products';
 import { handleInquiry } from '../utils/whatsapp';
 
 function parseNpr(price: string): number {
@@ -25,7 +25,7 @@ export default function PricingSection() {
   useEffect(() => {
     (async () => {
       const { data } = await supabase.from('products').select('*').order('created_at', { ascending: true });
-      if (data?.length) setProducts(filterCatalogProducts(data));
+      if (data?.length) setProducts(mergeCatalogWithDb(filterCatalogProducts(data)));
     })();
   }, []);
 

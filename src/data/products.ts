@@ -96,3 +96,22 @@ export function filterCatalogProducts<T extends { id: string }>(list: T[]): T[] 
     .filter((p) => allowed.has(p.id))
     .sort((a, b) => (PRODUCT_ORDER[a.id] ?? 99) - (PRODUCT_ORDER[b.id] ?? 99));
 }
+
+export function getCatalogProduct(id: string): Product | undefined {
+  return products.find((p) => p.id === id);
+}
+
+/** Merge Supabase rows onto defaults so UI always has all 3 editions */
+export function mergeCatalogWithDb(dbRows: Product[] | null | undefined): Product[] {
+  const byId = new Map((dbRows ?? []).map((p) => [p.id, p]));
+  return products.map((def) => {
+    const row = byId.get(def.id);
+    if (!row) return def;
+    return {
+      ...def,
+      ...row,
+      prices: row.prices?.single || row.prices?.multi ? row.prices : def.prices,
+      features: row.features?.length ? row.features : def.features,
+    };
+  });
+}

@@ -6,7 +6,7 @@ import { useSEO } from '../hooks/useSEO';
 import { SITE_URL } from '../config/site';
 import { supabase } from '../config/supabase';
 import type { Product } from '../data/products';
-import { products as defaultProducts, filterCatalogProducts } from '../data/products';
+import { products as defaultProducts, mergeCatalogWithDb, filterCatalogProducts } from '../data/products';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>(defaultProducts);
@@ -26,7 +26,7 @@ const ProductsPage = () => {
         .order('created_at', { ascending: true });
       
       if (!error && data?.length) {
-        setProducts(filterCatalogProducts(data));
+        setProducts(mergeCatalogWithDb(filterCatalogProducts(data)));
       }
       setLoading(false);
     }
