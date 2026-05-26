@@ -6,7 +6,6 @@ import {
   Menu,
   X,
   ChevronRight,
-  ArrowRight,
 } from 'lucide-react';
 import Logo from './Logo';
 import { useSiteContent } from '../hooks/useSiteContent';
@@ -141,7 +140,6 @@ const Navbar = () => {
                 className="flex items-center justify-center gap-2 w-full bg-primary text-on-primary py-4 rounded-2xl font-bold shadow-lg shadow-primary/25 active:scale-[0.98] transition-transform cursor-pointer text-center"
               >
                 Get Free Demo
-                <ArrowRight size={18} />
               </a>
             </div>
           </motion.div>
@@ -190,7 +188,6 @@ const Navbar = () => {
             className="bg-primary text-on-primary px-5 py-2 rounded-full text-label-md font-semibold shadow-md cursor-pointer inline-flex items-center justify-center gap-2"
           >
             Get Free Demo
-            <ArrowRight size={16} />
           </a>
         </div>
 
