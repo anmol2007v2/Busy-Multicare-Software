@@ -9,7 +9,6 @@ import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 import Ticker from '../components/Ticker';
 import PricingSection from '../components/PricingSection';
-import SEOContent from '../components/SEOContent';
 import FAQ from '../components/FAQ';
 import { useSEO, Schema } from '../hooks/useSEO';
 import { SITE_URL } from '../config/site';
@@ -109,7 +108,6 @@ const Home = () => {
       <Exhibitions />
       <Leadership />
       <Testimonials />
-      <SEOContent />
       <FAQ />
       <Contact />
     </>

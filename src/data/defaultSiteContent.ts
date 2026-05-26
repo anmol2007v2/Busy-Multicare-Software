@@ -1,4 +1,4 @@
-﻿import type { GlobalSiteContent, HomeSiteContent } from '../types/siteContent';
+import type { GlobalSiteContent, HomeSiteContent } from '../types/siteContent';
 
 export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
   navbar: {
@@ -78,7 +78,7 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
   awardsSection: {
     title: 'Recognized Excellence',
     subtitle: "International recognition as Nepal's leading Busy software partner.",
-    linkLabel: 'View all awards â†’',
+    linkLabel: 'View all awards →',
   },
   exhibitions: {
     title: 'At the Forefront of Innovation',
@@ -111,20 +111,7 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
     ],
   },
   seoContent: {
-    articles: [
-      {
-        title: 'Why Choose Busy Accounting Software for Your Nepal Business',
-        body: 'Busy accounting software Nepal is the trusted choice for SMEs and enterprises managing VAT, inventory, and payroll under IRD rules. As an authorized dealer, Busy Multicare offers competitive busy software price Nepal packages from NPR 12,000/year â€” with local installation, Nepali-language support, and IRD VAT compatible reporting.',
-      },
-      {
-        title: 'Busy Software Features for Nepal Businesses',
-        body: 'Busy supports Bikram Sambat fiscal calendars, Nepal VAT invoices and returns, multi-currency transactions, and Nepali language interfaces. From busy basic accounting software for single-location retailers to Busy Enterprise ERP with manufacturing and payroll, every edition is tuned for how Nepali businesses actually work.',
-      },
-      {
-        title: 'Trusted by 10,000+ Businesses Across Nepal',
-        body: 'From Putalisadak wholesalers to Pokhara hotels and Biratnagar manufacturers, over 10,000 installations rely on Busy Multicare for support, training, and upgrades.',
-      },
-    ],
+    articles: [],
   },
   faq: {
     title: 'Frequently Asked',
@@ -135,7 +122,7 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
       { q: 'Where can I buy Busy software in Kathmandu?', a: 'Busy Multicare Software Pvt. Ltd. is an authorized Busy software dealer in Kathmandu, Nepal.' },
       { q: "Does Busy accounting software support Nepal VAT and tax formats?", a: "Yes, Busy software is fully compatible with Nepal's VAT system, IRD requirements, and Nepali fiscal year (Bikram Sambat)." },
       { q: 'Is there a free demo of Busy software available?', a: 'Yes! We offer a free demo of all Busy software products. WhatsApp us to schedule your free demo today.' },
-      { q: 'What support is provided after buying Busy software?', a: 'We provide installation support, staff training, annual maintenance, and ongoing WhatsApp/phone support. Sundayâ€“Friday, 10 AMâ€“6 PM.' },
+      { q: 'What support is provided after buying Busy software?', a: 'We provide installation support, staff training, annual maintenance, and ongoing WhatsApp/phone support. Sunday–Friday, 10 AM–6 PM.' },
     ],
   },
   footer: {
@@ -177,7 +164,7 @@ export const DEFAULT_GLOBAL_CONTENT: GlobalSiteContent = {
   email: 'info@busymulticare.com',
   emailAlt: 'busyedu@gmail.com',
   address: 'Putalisadak, Kathmandu, Nepal',
-  workingHours: 'Sun â€“ Fri: 10:00 â€“ 18:00',
+  workingHours: 'SUN TO FRI 10AM TO 7PM',
   whatsappNumber: '9779851125905',
   social: {
     facebook: 'https://www.facebook.com/p/Busy-Multi-Care-Pvt-Ltd-100063584352392/',
@@ -202,7 +189,6 @@ export function mergeHomeContent(partial: Partial<HomeSiteContent> | null | unde
     exhibitions: { ...DEFAULT_HOME_CONTENT.exhibitions, ...partial.exhibitions, images: partial.exhibitions?.images?.length ? partial.exhibitions.images : DEFAULT_HOME_CONTENT.exhibitions.images },
     leadership: { ...DEFAULT_HOME_CONTENT.leadership, ...partial.leadership, leaders: partial.leadership?.leaders?.length ? partial.leadership.leaders : DEFAULT_HOME_CONTENT.leadership.leaders },
     testimonials: { ...DEFAULT_HOME_CONTENT.testimonials, ...partial.testimonials, items: partial.testimonials?.items?.length ? partial.testimonials.items : DEFAULT_HOME_CONTENT.testimonials.items },
-    seoContent: { articles: partial.seoContent?.articles?.length ? partial.seoContent.articles : DEFAULT_HOME_CONTENT.seoContent.articles },
     faq: { ...DEFAULT_HOME_CONTENT.faq, ...partial.faq, items: partial.faq?.items?.length ? partial.faq.items : DEFAULT_HOME_CONTENT.faq.items },
     footer: {
       ...DEFAULT_HOME_CONTENT.footer,

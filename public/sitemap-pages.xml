@@ -5,112 +5,112 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://busymulticare.com/</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://busymulticare.com/"/>
-    <xhtml:link rel="alternate" hreflang="ne" href="https://busymulticare.com/ne/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://busymulticare.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.busymulticare.com.np/"/>
+    <xhtml:link rel="alternate" hreflang="ne" href="https://www.busymulticare.com.np/ne/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.busymulticare.com.np/"/>
   </url>
 
   <!-- Core Pages -->
   <url>
-    <loc>https://busymulticare.com/about</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/about</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/services</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/services</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/products</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/products</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/blog</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/blog</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/awards</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/awards</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/contact</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/contact</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/pricing</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/pricing</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Service Sub-pages -->
   <url>
-    <loc>https://busymulticare.com/services/accounting-software</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/services/accounting-software</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/services/business-automation</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/services/business-automation</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/services/erp-solutions</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/services/erp-solutions</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/services/pos-system</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/services/pos-system</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/services/payroll-management</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/services/payroll-management</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Legal Pages -->
   <url>
-    <loc>https://busymulticare.com/privacy-policy</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/privacy-policy</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/terms-of-service</loc>
-    <lastmod>2026-05-17</lastmod>
+    <loc>https://www.busymulticare.com.np/terms-of-service</loc>
+    <lastmod>2026-05-26</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

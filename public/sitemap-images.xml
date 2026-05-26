@@ -3,27 +3,27 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
-    <loc>https://busymulticare.com/</loc>
+    <loc>https://www.busymulticare.com.np/</loc>
     <image:image>
-      <image:loc>https://busymulticare.com/logo.png</image:loc>
+      <image:loc>https://www.busymulticare.com.np/logo.png</image:loc>
       <image:title>Busy Multicare Software Logo - Nepal's Leading Accounting Software</image:title>
       <image:caption>Busy Multicare Software – Accounting and Business Automation for Nepal</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/services/accounting-software</loc>
+    <loc>https://www.busymulticare.com.np/services/accounting-software</loc>
     <image:image>
-      <image:loc>https://busymulticare.com/image/accounting-software-nepal.jpg</image:loc>
+      <image:loc>https://www.busymulticare.com.np/image/accounting-software-nepal.jpg</image:loc>
       <image:title>Accounting Software Nepal – Busy Multicare</image:title>
       <image:caption>Best accounting software for businesses in Nepal</image:caption>
     </image:image>
   </url>
 
   <url>
-    <loc>https://busymulticare.com/awards</loc>
+    <loc>https://www.busymulticare.com.np/awards</loc>
     <image:image>
-      <image:loc>https://busymulticare.com/image/awards.jpg</image:loc>
+      <image:loc>https://www.busymulticare.com.np/image/awards.jpg</image:loc>
       <image:title>Busy Multicare Awards – Nepal's Best Business Software</image:title>
       <image:caption>Awards and recognition received by Busy Multicare Software</image:caption>
     </image:image>
