@@ -34,7 +34,6 @@ function App() {
         <title>Busy Multicare Software – Healthcare Practice Management</title>
         <meta name="description" content="Busy Multicare Software provides comprehensive practice management, accounting, and ERP solutions for healthcare clinics in Nepal." />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <link rel="canonical" href={window.location.href} />
         <meta name="robots" content="index,follow" />
       </Helmet>
       <Router>

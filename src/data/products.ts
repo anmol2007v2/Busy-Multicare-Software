@@ -90,11 +90,29 @@ const PRODUCT_ORDER: Record<string, number> = {
   'busy-enterprise': 2,
 };
 
-export function filterCatalogProducts<T extends { id: string }>(list: T[]): T[] {
+const PRODUCT_ID_BY_NAME: Record<string, (typeof PRODUCT_IDS)[number]> = {
+  'busy basic': 'busy-basic',
+  'busy standard': 'busy-standard',
+  'busy enterprise': 'busy-enterprise',
+  basic: 'busy-basic',
+  standard: 'busy-standard',
+  enterprise: 'busy-enterprise',
+};
+
+export function getProductRouteId(product: Pick<Product, 'id' | 'name'>): string {
+  if ((PRODUCT_IDS as readonly string[]).includes(product.id)) return product.id;
+  return PRODUCT_ID_BY_NAME[product.name.trim().toLowerCase()] ?? product.id;
+}
+
+export function filterCatalogProducts<T extends { id: string; name?: string }>(list: T[]): T[] {
   const allowed = new Set<string>(PRODUCT_IDS);
   return list
-    .filter((p) => allowed.has(p.id))
-    .sort((a, b) => (PRODUCT_ORDER[a.id] ?? 99) - (PRODUCT_ORDER[b.id] ?? 99));
+    .filter((p) => allowed.has(getProductRouteId({ id: p.id, name: p.name ?? '' })))
+    .sort(
+      (a, b) =>
+        (PRODUCT_ORDER[getProductRouteId({ id: a.id, name: a.name ?? '' })] ?? 99) -
+        (PRODUCT_ORDER[getProductRouteId({ id: b.id, name: b.name ?? '' })] ?? 99),
+    );
 }
 
 export function getCatalogProduct(id: string): Product | undefined {
@@ -103,13 +121,17 @@ export function getCatalogProduct(id: string): Product | undefined {
 
 /** Merge Supabase rows onto defaults so UI always has all 3 editions */
 export function mergeCatalogWithDb(dbRows: Product[] | null | undefined): Product[] {
-  const byId = new Map((dbRows ?? []).map((p) => [p.id, p]));
+  const byId = new Map((dbRows ?? []).map((p) => [getProductRouteId(p), p]));
   return products.map((def) => {
     const row = byId.get(def.id);
     if (!row) return def;
     return {
       ...def,
       ...row,
+      id: def.id,
+      name: def.name,
+      edition: def.edition,
+      image: def.image,
       prices: row.prices?.single || row.prices?.multi ? row.prices : def.prices,
       features: row.features?.length ? row.features : def.features,
     };

@@ -5,6 +5,7 @@
  */
 
 import { useEffect } from 'react';
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '../config/site';
 
 export interface SEOProps {
   title: string;
@@ -23,9 +24,7 @@ export interface SEOProps {
   };
 }
 
-const BASE_URL = 'https://busymulticare.com';
-const SITE_NAME = 'Busy Multicare Software';
-const DEFAULT_OG_IMAGE = `${BASE_URL}/og-image.png`;
+const BASE_URL = SITE_URL;
 // Twitter creator tag removed — handle not verified
 
 function setMeta(name: string, content: string, property = false) {

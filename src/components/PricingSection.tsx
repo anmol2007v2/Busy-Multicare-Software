@@ -4,7 +4,7 @@ import { Check } from 'lucide-react';
 import { useSiteContent } from '../hooks/useSiteContent';
 import { supabase } from '../config/supabase';
 import type { Product } from '../data/products';
-import { products as defaultProducts, mergeCatalogWithDb, filterCatalogProducts } from '../data/products';
+import { products as defaultProducts, mergeCatalogWithDb, filterCatalogProducts, getProductRouteId } from '../data/products';
 import { handleInquiry } from '../utils/whatsapp';
 
 function parseNpr(price: string): number {
@@ -64,7 +64,7 @@ export default function PricingSection() {
                 ))}
               </ul>
               <button type="button" onClick={() => handleInquiry(product.name)} className="w-full bg-[#25D366] text-white py-3 rounded-xl font-semibold mb-3 hover:opacity-90 cursor-pointer">Buy Now via WhatsApp</button>
-              <Link to={`/product/${product.id}`} className="w-full block text-center border border-primary text-primary py-3 rounded-xl font-semibold hover:bg-primary/5">Learn More</Link>
+              <Link to={`/product/${getProductRouteId(product)}`} className="w-full block text-center border border-primary text-primary py-3 rounded-xl font-semibold hover:bg-primary/5">Learn More</Link>
             </div>
           ))}
         </div>

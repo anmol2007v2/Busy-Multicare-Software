@@ -6,7 +6,7 @@ import { useSEO } from '../hooks/useSEO';
 import { SITE_URL } from '../config/site';
 import { supabase } from '../config/supabase';
 import type { Product } from '../data/products';
-import { products as defaultProducts, mergeCatalogWithDb, filterCatalogProducts } from '../data/products';
+import { products as defaultProducts, mergeCatalogWithDb, filterCatalogProducts, getProductRouteId } from '../data/products';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState<Product[]>(defaultProducts);
@@ -34,7 +34,7 @@ const ProductsPage = () => {
   }, []);
 
   return (
-    <div className="bg-surface pt-20 pb-section-padding px-margin-desktop">
+    <div className="bg-surface pt-20 pb-section-padding px-margin-mobile md:px-margin-desktop overflow-x-hidden">
       <div className="max-w-container-max mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -104,7 +104,7 @@ const ProductsPage = () => {
                   </div>
 
                   <Link 
-                    to={`/product/${product.id}`}
+                    to={`/product/${getProductRouteId(product)}`}
                     className="w-full bg-on-background text-surface-bright py-4 rounded-xl font-bold flex items-center justify-center gap-2 group-hover:bg-primary transition-all shadow-md active:scale-95"
                   >
                     View Full Features <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -120,7 +120,7 @@ const ProductsPage = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="mt-20 bg-[#050b1a] p-12 lg:p-20 rounded-[3rem] text-center text-white shadow-2xl relative overflow-hidden"
+          className="mt-20 bg-[#050b1a] p-6 sm:p-10 lg:p-20 rounded-3xl lg:rounded-[3rem] text-center text-white shadow-2xl relative overflow-hidden"
         >
           {/* Decorative glow */}
           <div className="absolute top-0 left-0 w-full h-full bg-primary/5 pointer-events-none" />
@@ -129,10 +129,10 @@ const ProductsPage = () => {
             We provide specialized add-ons and vertical solutions for specific industries like Auto-parts, Pharmacies, and Restaurants.
           </p>
           <div className="flex flex-wrap justify-center gap-6">
-            <Link to="/contact" className="bg-primary-container text-on-primary-container px-10 py-4 rounded-xl font-bold hover:bg-primary-fixed-dim transition-all shadow-xl">
+            <Link to="/contact" className="bg-primary-container text-on-primary-container px-6 sm:px-10 py-4 rounded-xl font-bold hover:bg-primary-fixed-dim transition-all shadow-xl">
               Talk to an Expert
             </Link>
-            <button className="bg-white/10 text-white border border-white/20 px-10 py-4 rounded-xl font-bold hover:bg-white/20 transition-all">
+            <button className="bg-white/10 text-white border border-white/20 px-6 sm:px-10 py-4 rounded-xl font-bold hover:bg-white/20 transition-all">
               Download Brochure
             </button>
           </div>

@@ -4,4 +4,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 
-Sitemap: https://busymulticare.com/sitemap.xml
+Sitemap: https://www.busymulticare.com.np/sitemap.xml

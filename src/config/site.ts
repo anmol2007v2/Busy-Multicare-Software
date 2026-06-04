@@ -1,5 +1,5 @@
 /** Site-wide constants — single source of truth */
-export const SITE_URL = 'https://busymulticare.com';
+export const SITE_URL = 'https://www.busymulticare.com.np';
 export const SITE_NAME = 'Busy Multicare Software';
 export const COMPANY_NAME = 'Busy Multicare Software Pvt. Ltd.';
 

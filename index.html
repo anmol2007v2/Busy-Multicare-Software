@@ -26,6 +26,17 @@
     <!--  CANONICAL                                  -->
     <!-- ═══════════════════════════════════════════ -->
     <link rel="canonical" href="https://www.busymulticare.com.np/" />
+    <script>
+      (function () {
+        var origin = 'https://www.busymulticare.com.np';
+        var path = window.location.pathname === '/' ? '/' : window.location.pathname.replace(/\/+$/, '');
+        var canonicalUrl = origin + path;
+        var canonical = document.querySelector('link[rel="canonical"]');
+        if (canonical) canonical.setAttribute('href', canonicalUrl);
+        var ogUrl = document.querySelector('meta[property="og:url"]');
+        if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+      })();
+    </script>
 
     <!-- ═══════════════════════════════════════════ -->
     <!--  OPEN GRAPH / FACEBOOK                     -->
@@ -66,9 +77,9 @@
     <!-- ═══════════════════════════════════════════ -->
     <!--  HREFLANG (MULTILINGUAL)                   -->
     <!-- ═══════════════════════════════════════════ -->
-    <link rel="alternate" hreflang="en" href="https://busymulticare.com/" />
-    <link rel="alternate" hreflang="ne" href="https://busymulticare.com/ne/" />
-    <link rel="alternate" hreflang="x-default" href="https://busymulticare.com/" />
+    <link rel="alternate" hreflang="en" href="https://www.busymulticare.com.np/" />
+    <link rel="alternate" hreflang="ne" href="https://www.busymulticare.com.np/ne/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.busymulticare.com.np/" />
 
     <!-- ═══════════════════════════════════════════ -->
     <!--  PRECONNECT / DNS PREFETCH                 -->
@@ -94,13 +105,13 @@
       "@graph": [
         {
           "@type": "Organization",
-          "@id": "https://busymulticare.com/#organization",
+          "@id": "https://www.busymulticare.com.np/#organization",
           "name": "Busy Multicare Software Pvt. Ltd.",
           "alternateName": "Busy Multicare",
-          "url": "https://busymulticare.com",
+          "url": "https://www.busymulticare.com.np",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://busymulticare.com/logo.png",
+            "url": "https://www.busymulticare.com.np/logo.png",
             "width": 200,
             "height": 60
           },
@@ -147,18 +158,18 @@
         },
         {
           "@type": "WebSite",
-          "@id": "https://busymulticare.com/#website",
-          "url": "https://busymulticare.com",
+          "@id": "https://www.busymulticare.com.np/#website",
+          "url": "https://www.busymulticare.com.np",
           "name": "Busy Multicare Software",
           "description": "Nepal's #1 Accounting & Business Automation Software",
           "publisher": {
-            "@id": "https://busymulticare.com/#organization"
+            "@id": "https://www.busymulticare.com.np/#organization"
           },
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://busymulticare.com/search?q={search_term_string}"
+              "urlTemplate": "https://www.busymulticare.com.np/search?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
           },
@@ -166,10 +177,10 @@
         },
         {
           "@type": "LocalBusiness",
-          "@id": "https://busymulticare.com/#localbusiness",
+          "@id": "https://www.busymulticare.com.np/#localbusiness",
           "name": "Busy Multicare Software Pvt. Ltd.",
-          "image": "https://busymulticare.com/og-image.png",
-          "url": "https://busymulticare.com",
+          "image": "https://www.busymulticare.com.np/og-image.png",
+          "url": "https://www.busymulticare.com.np",
           "telephone": "+977-9851125905",
           "email": "info@busymulticare.com",
           "priceRange": "NPR 5,000 – NPR 500,000",
