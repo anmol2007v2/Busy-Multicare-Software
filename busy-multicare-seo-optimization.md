@@ -695,7 +695,7 @@ Ask 5 satisfied customers to write case studies. Post on site. Other sites may r
 Busy Multicare Software Pvt. Ltd.
 [Street Address], Kathmandu, Bagmati Province, Nepal – 44600
 Phone: +977-9851125905
-Email: info@busymulticare.com
+Email: busykathmandu@gmail.com
 Website: https://busymulticare.com
 ```
 

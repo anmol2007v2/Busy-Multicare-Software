@@ -161,8 +161,8 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
 export const DEFAULT_GLOBAL_CONTENT: GlobalSiteContent = {
   phoneDisplay: '+977-9851125905',
   phoneRaw: '9851125905',
-  email: 'info@busymulticare.com',
-  emailAlt: 'busyedu@gmail.com',
+  email: 'busykathmandu@gmail.com',
+  emailAlt: 'busykathmandu@gmail.com',
   address: 'Putalisadak, Kathmandu, Nepal',
   workingHours: 'SUN TO FRI 10AM TO 7PM',
   whatsappNumber: '9779851125905',
@@ -206,7 +206,8 @@ export function mergeGlobalContent(partial: Partial<GlobalSiteContent> | null | 
   return {
     ...DEFAULT_GLOBAL_CONTENT,
     ...partial,
+    email: DEFAULT_GLOBAL_CONTENT.email,
+    emailAlt: DEFAULT_GLOBAL_CONTENT.emailAlt,
     social: { ...DEFAULT_GLOBAL_CONTENT.social, ...partial.social },
   };
 }
-

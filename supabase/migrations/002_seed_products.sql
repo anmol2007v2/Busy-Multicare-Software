@@ -16,7 +16,7 @@ VALUES
       'Stock Ageing & Valuation',
       'GST / VAT Compliant'
     ],
-    '/image/busy_basic.svg',
+    '/image/busy-basic.png',
     'Ideal for small businesses needing reliable accounting and inventory management. The Blue Edition provides all essential tools to digitize your financial records.'
   ),
   (
@@ -34,7 +34,7 @@ VALUES
       'Sales / Purchase Quotations',
       'Direct SMS / Email from Software'
     ],
-    '/image/busy_standard.svg',
+    '/image/busy-standard.png',
     'Designed for growing businesses that require advanced inventory control and manufacturing capabilities. The Saffron Edition offers powerful database support and reporting.'
   ),
   (
@@ -52,7 +52,7 @@ VALUES
       'User-definable Reports',
       'Voucher / Master Approval System'
     ],
-    '/image/busy_enterprise.svg',
+    '/image/busy-enterprise.png',
     'The ultimate solution for large enterprises and manufacturing units. The Emerald Edition includes high-end features like payroll, CRM, and multi-branch syncing.'
   )
 ON CONFLICT (id) DO NOTHING;

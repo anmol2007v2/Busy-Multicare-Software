@@ -5,3 +5,6 @@ Disallow: /admin/
 Disallow: /api/
 
 Sitemap: https://www.busymulticare.com.np/sitemap.xml
+Sitemap: https://www.busymulticare.com.np/sitemap-pages.xml
+Sitemap: https://www.busymulticare.com.np/sitemap-blog.xml
+Sitemap: https://www.busymulticare.com.np/sitemap-images.xml

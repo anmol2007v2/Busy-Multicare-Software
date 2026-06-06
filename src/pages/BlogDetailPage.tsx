@@ -18,6 +18,7 @@ export default function BlogDetailPage() {
         .from('blog_posts')
         .select('*')
         .eq('slug', slug)
+        .eq('status', 'published')
         .single();
       
       if (!error && data) {
@@ -33,6 +34,7 @@ export default function BlogDetailPage() {
     description: post?.excerpt ?? 'Busy Multicare blog',
     canonical: `${SITE_URL}/blog/${slug}`,
     ogType: 'article',
+    noIndex: !loading && !post,
     structuredData: post
       ? Schema.article({
           title: post.title,

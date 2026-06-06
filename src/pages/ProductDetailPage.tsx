@@ -38,7 +38,7 @@ const ProductDetailPage = () => {
       const { data, error } = await supabase.from('products').select('*').eq('id', id).maybeSingle();
 
       if (!error && data) {
-        const [merged] = mergeCatalogWithDb([data]);
+        const merged = mergeCatalogWithDb([data]).find((item) => item.id === id);
         if (merged) setProduct(merged);
       } else if (!fallback) {
         setProduct(null);
@@ -56,6 +56,7 @@ const ProductDetailPage = () => {
       : 'BUSY product details from Busy Multicare Software in Nepal.',
     canonical: `${SITE_URL}/product/${id ?? ''}`,
     ogType: 'product',
+    noIndex: !loading && !product,
     ogImage: product ? `${SITE_URL}${product.image}` : undefined,
     keywords: product
       ? `${product.name?.toLowerCase()} nepal, busy ${product.name?.toLowerCase()}, busy software price nepal, ${product.edition?.toLowerCase()} edition busy`
@@ -83,21 +84,25 @@ const ProductDetailPage = () => {
   return (
     <div className="bg-surface pb-section-padding">
       <section
-        className={`pt-32 pb-20 px-margin-desktop relative overflow-hidden ${
+        className={`pt-28 md:pt-32 pb-16 md:pb-20 px-margin-mobile md:px-margin-desktop relative overflow-hidden ${
           product.edition === 'Blue' ? 'bg-blue-600' : product.edition === 'Saffron' ? 'bg-orange-600' : 'bg-emerald-600'
         }`}
       >
         <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-gutter items-center relative z-10">
-          <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }}>
-            <Link to="/products" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex flex-col items-start gap-5 max-w-2xl"
+          >
+            <Link to="/products" className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors shrink-0">
               <ArrowLeft className="w-5 h-5" /> Back to all products
             </Link>
-            <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-label-sm font-bold mb-4">
+            <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-label-sm font-bold shrink-0">
               {product.edition} Edition
             </span>
-            <h1 className="text-display-hero text-white mb-4">{product.name}</h1>
-            <p className="text-body-lg text-white/90 mb-6">{product.tagline}</p>
-            <div className="flex flex-wrap gap-6 mb-8 text-white">
+            <h1 className="text-headline-lg-mobile md:text-display-hero text-white break-words">{product.name}</h1>
+            <p className="text-body-lg text-white/90">{product.tagline}</p>
+            <div className="flex flex-col sm:flex-row flex-wrap gap-5 sm:gap-6 text-white">
               <div>
                 <p className="text-label-sm text-white/70">Single user / year</p>
                 <p className="text-headline-sm font-bold">{product.prices.single}</p>
@@ -107,19 +112,19 @@ const ProductDetailPage = () => {
                 <p className="text-headline-sm font-bold">{product.prices.multi}</p>
               </div>
             </div>
-            <p className="text-headline-sm text-white/90 mb-10 max-w-xl">{product.description}</p>
-            <div className="flex flex-wrap gap-4">
+            <p className="text-body-lg md:text-headline-sm text-white/90 max-w-xl">{product.description}</p>
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 w-full sm:w-auto">
               <a
                 href={FREE_TRIAL_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white text-on-background px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:shadow-2xl transition-all active:scale-95"
+                className="bg-white text-on-background px-6 sm:px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:shadow-2xl transition-all active:scale-95"
               >
                 Download Free Trial <Download className="w-5 h-5" />
               </a>
               <Link
                 to="/contact"
-                className="bg-black/20 text-white border border-white/20 backdrop-blur-md px-8 py-4 rounded-xl font-bold flex items-center gap-2 hover:bg-black/30 transition-all"
+                className="bg-black/20 text-white border border-white/20 backdrop-blur-md px-6 sm:px-8 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-black/30 transition-all"
               >
                 Request a Quote <PhoneCall className="w-5 h-5" />
               </Link>

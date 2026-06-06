@@ -1,32 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.busymulticare.com.np/</loc>
     <image:image>
       <image:loc>https://www.busymulticare.com.np/logo.png</image:loc>
-      <image:title>Busy Multicare Software Logo - Nepal's Leading Accounting Software</image:title>
-      <image:caption>Busy Multicare Software – Accounting and Business Automation for Nepal</image:caption>
+      <image:title>Busy Multicare Software Logo</image:title>
+      <image:caption>Busy Multicare Software accounting and business automation in Nepal</image:caption>
     </image:image>
   </url>
-
   <url>
-    <loc>https://www.busymulticare.com.np/services/accounting-software</loc>
+    <loc>https://www.busymulticare.com.np/about</loc>
     <image:image>
-      <image:loc>https://www.busymulticare.com.np/image/accounting-software-nepal.jpg</image:loc>
-      <image:title>Accounting Software Nepal – Busy Multicare</image:title>
-      <image:caption>Best accounting software for businesses in Nepal</image:caption>
+      <image:loc>https://www.busymulticare.com.np/image/owner%20achievement%201.svg</image:loc>
+      <image:title>Busy Multicare leadership</image:title>
+      <image:caption>Busy Multicare Software leadership and company story</image:caption>
     </image:image>
   </url>
-
   <url>
-    <loc>https://www.busymulticare.com.np/awards</loc>
+    <loc>https://www.busymulticare.com.np/products</loc>
     <image:image>
-      <image:loc>https://www.busymulticare.com.np/image/awards.jpg</image:loc>
-      <image:title>Busy Multicare Awards – Nepal's Best Business Software</image:title>
-      <image:caption>Awards and recognition received by Busy Multicare Software</image:caption>
+      <image:loc>https://www.busymulticare.com.np/image/busy-basic.png</image:loc>
+      <image:title>BUSY Basic accounting software</image:title>
+      <image:caption>BUSY Basic edition from Busy Multicare Software Nepal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.busymulticare.com.np/image/busy-standard.png</image:loc>
+      <image:title>BUSY Standard accounting software</image:title>
+      <image:caption>BUSY Standard edition from Busy Multicare Software Nepal</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.busymulticare.com.np/image/busy-enterprise.png</image:loc>
+      <image:title>BUSY Enterprise accounting software</image:title>
+      <image:caption>BUSY Enterprise edition from Busy Multicare Software Nepal</image:caption>
     </image:image>
   </url>
-
 </urlset>

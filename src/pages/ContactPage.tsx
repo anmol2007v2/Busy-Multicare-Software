@@ -6,7 +6,7 @@ import { SITE_URL, COMPANY_NAME, PHONE_DISPLAY, EMAIL, ADDRESS } from '../config
 
 const QUICK_LINKS = [
   { icon: Phone, label: 'Call us', value: '9851125905', href: 'tel:+9779851125905' },
-  { icon: Mail, label: 'Email', value: 'busyedu@gmail.com', href: 'mailto:busyedu@gmail.com' },
+  { icon: Mail, label: 'Email', value: EMAIL, href: `mailto:${EMAIL}` },
   {
     icon: MessageCircle,
     label: 'WhatsApp',

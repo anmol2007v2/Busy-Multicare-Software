@@ -8,8 +8,8 @@ export const PHONE_DISPLAY = '+977-9851125905';
 export const PHONE_TEL = '+9779851125905';
 export const PHONE_RAW = '9851125905';
 
-export const EMAIL = 'info@busymulticare.com';
-export const EMAIL_ALT = 'busyedu@gmail.com';
+export const EMAIL = 'busykathmandu@gmail.com';
+export const EMAIL_ALT = 'busykathmandu@gmail.com';
 
 export const ADDRESS = 'Putalisadak, Kathmandu, Nepal';
 export const PAN_VAT = 'PAN: [Your PAN] | VAT: [Your VAT]';
