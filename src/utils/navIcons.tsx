@@ -1,4 +1,4 @@
-import { Home, Package, Trophy, Users, Newspaper, Headphones, type LucideIcon } from 'lucide-react';
+import { Home, Package, Trophy, Users, Newspaper, Headphones, LifeBuoy, type LucideIcon } from 'lucide-react';
 
 const ICON_BY_PATH: Record<string, LucideIcon> = {
   '/': Home,
@@ -7,6 +7,7 @@ const ICON_BY_PATH: Record<string, LucideIcon> = {
   '/about': Users,
   '/blog': Newspaper,
   '/contact': Headphones,
+  '/support': LifeBuoy,
 };
 
 export function navIconForPath(path: string): LucideIcon {

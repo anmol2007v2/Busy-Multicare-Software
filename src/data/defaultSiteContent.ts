@@ -8,7 +8,8 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
       { name: 'Awards', path: '/awards', visible: true, order: 2 },
       { name: 'About Us', path: '/about', visible: true, order: 3 },
       { name: 'Blog', path: '/blog', visible: true, order: 4 },
-      { name: 'Support', path: '/support', visible: true, order: 5 },
+      { name: 'Contact', path: '/contact', visible: true, order: 5 },
+      { name: 'Support', path: '/support', visible: true, order: 6 },
     ],
   },
   hero: {
@@ -173,12 +174,41 @@ export const DEFAULT_GLOBAL_CONTENT: GlobalSiteContent = {
   },
 };
 
+function mergeNavbarLinks(partialLinks: HomeSiteContent['navbar']['links'] | undefined): HomeSiteContent['navbar']['links'] {
+  if (!partialLinks?.length) return DEFAULT_HOME_CONTENT.navbar.links;
+
+  const links = partialLinks.map((link) => ({ ...link }));
+  const existingContact = links.find((link) => link.path === '/contact');
+  const existingSupport = links.find((link) => link.path === '/support');
+  const contactOrder = existingSupport?.order ?? existingContact?.order ?? Math.max(...links.map((link) => link.order), 4) + 1;
+
+  if (existingContact) {
+    existingContact.name = 'Contact';
+    existingContact.visible = true;
+    existingContact.order = contactOrder;
+  } else {
+    links.push({ name: 'Contact', path: '/contact', visible: true, order: contactOrder });
+  }
+
+  if (existingSupport) {
+    existingSupport.name = 'Support';
+    existingSupport.visible = true;
+    existingSupport.order = contactOrder + 0.5;
+  } else {
+    links.push({ name: 'Support', path: '/support', visible: true, order: contactOrder + 0.5 });
+  }
+
+  return links
+    .sort((a, b) => a.order - b.order)
+    .map((link, order) => ({ ...link, order }));
+}
+
 export function mergeHomeContent(partial: Partial<HomeSiteContent> | null | undefined): HomeSiteContent {
   if (!partial) return DEFAULT_HOME_CONTENT;
   return {
     ...DEFAULT_HOME_CONTENT,
     ...partial,
-    navbar: { ...DEFAULT_HOME_CONTENT.navbar, ...partial.navbar, links: partial.navbar?.links?.length ? partial.navbar.links : DEFAULT_HOME_CONTENT.navbar.links },
+    navbar: { ...DEFAULT_HOME_CONTENT.navbar, ...partial.navbar, links: mergeNavbarLinks(partial.navbar?.links) },
     hero: { ...DEFAULT_HOME_CONTENT.hero, ...partial.hero, stats: partial.hero?.stats?.length ? partial.hero.stats : DEFAULT_HOME_CONTENT.hero.stats },
     ticker: { items: partial.ticker?.items?.length ? partial.ticker.items : DEFAULT_HOME_CONTENT.ticker.items },
     trustedBy: { ...DEFAULT_HOME_CONTENT.trustedBy, ...partial.trustedBy, logos: partial.trustedBy?.logos?.length ? partial.trustedBy.logos : DEFAULT_HOME_CONTENT.trustedBy.logos },
