@@ -29,13 +29,16 @@ type ContactProps = {
 const inputBase =
   'w-full bg-white border border-outline-variant/60 rounded-2xl py-3.5 pl-12 pr-4 text-body-md text-on-background placeholder:text-on-surface-variant/50 focus:border-primary focus:ring-4 focus:ring-primary/10 focus:outline-none transition-all';
 
+const mapsLink =
+  'https://maps.app.goo.gl/VbvMryp8VKt6mLv7A';
+
+const mapsEmbedSrc =
+  'https://www.google.com/maps?q=Busy%20Multi%20Care%20Pvt%20Ltd%20(SOLE%20DISTRIBUTOR%20For%20NEPAL)%4027.6992866,85.3129322&z=17&output=embed';
+
 const Contact = ({ variant = 'home' }: ContactProps) => {
   const { home, global } = useSiteContent();
   const c = home.contact;
   const [businessType, setBusinessType] = useState<string>(BUSINESS_TYPES[0]);
-
-  const mapsLink =
-    'https://www.google.com/maps/place/Busy+Multi+Care+Pvt+Ltd+(SOLE+DISTRIBUTOR+For+NEPAL)/@27.699286,85.312936,17z/data=!4m6!3m5!1s0x39eb1855a4438069:0x47f304a1d7cdd5ae!8m2!3d27.6992866!4d85.3129322!16s%2Fg%2F11b6lk7l5b?entry=ttu&g_ep=EgoyMDI2MDUyMC4wIKXMDSoASAFQAw%3D%3D';
 
   const contactInfo = [
     {
@@ -231,7 +234,7 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
             <div className="relative h-[280px] md:h-[320px] w-full rounded-[2rem] overflow-hidden shadow-xl border border-outline-variant/20 group">
               <iframe
                 title="Busy Multi Care office location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.483758368943!2d85.3216839!3d27.70233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19a6ad8c7113%3A0x6e9f168010419266!2sBusy%20Multi%20Care%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1715865600000!5m2!1sen!2snp"
+                src={mapsEmbedSrc}
                 width="100%"
                 height="100%"
                 className="absolute inset-0 grayscale-[20%] group-hover:grayscale-0 transition-all duration-500"
@@ -240,11 +243,28 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
-              <div className="absolute bottom-4 left-4 right-4 md:right-auto md:max-w-xs bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-lg border border-white/80">
-                <p className="font-bold text-on-background text-label-md">Visit our office</p>
-                <p className="text-label-sm text-on-surface-variant mt-0.5">Putalisadak, Kathmandu</p>
-              </div>
             </div>
+
+            <a
+              href={mapsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 rounded-2xl bg-white border border-outline-variant/25 p-5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all"
+            >
+              <span className="flex items-center gap-4 min-w-0">
+                <span className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                  <MapPin size={20} />
+                </span>
+                <span className="min-w-0">
+                  <span className="block font-bold text-on-background text-label-md">Visit our office</span>
+                  <span className="block text-label-sm text-on-surface-variant mt-0.5">Putalisadak, Kathmandu</span>
+                </span>
+              </span>
+              <span className="inline-flex items-center gap-2 text-primary font-bold text-label-sm shrink-0">
+                Get directions
+                <ArrowRight size={16} />
+              </span>
+            </a>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {contactInfo.map((item, i) => {
@@ -256,7 +276,13 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
                     </div>
                     <div className="min-w-0">
                       <h5 className="font-bold text-on-background text-label-md">{item.title}</h5>
-                      <p className="text-on-surface-variant text-label-sm mt-0.5 leading-relaxed">{item.desc}</p>
+                      <p
+                        className={`text-on-surface-variant text-label-sm mt-0.5 leading-relaxed ${
+                          item.title === 'Email Us' ? 'break-all' : ''
+                        }`}
+                      >
+                        {item.desc}
+                      </p>
                     </div>
                   </div>
                 );

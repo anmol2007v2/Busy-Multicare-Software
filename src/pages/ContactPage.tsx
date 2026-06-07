@@ -79,9 +79,15 @@ const ContactPage = () => {
                   <div className="w-11 h-11 rounded-xl bg-primary text-on-primary flex items-center justify-center shrink-0">
                     <Icon size={20} />
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-label-sm text-on-surface-variant">{link.label}</p>
-                    <p className="font-bold text-on-background text-label-md">{link.value}</p>
+                    <p
+                      className={`font-bold text-on-background text-label-md ${
+                        link.label === 'Email' ? 'break-all' : ''
+                      }`}
+                    >
+                      {link.value}
+                    </p>
                   </div>
                 </a>
               );
@@ -111,7 +117,7 @@ const ContactPage = () => {
             </div>
             <div>
               <p className="font-bold text-on-background text-label-md">Email Address</p>
-              <p><a href={`mailto:${EMAIL}`} className="hover:text-primary transition-colors">{EMAIL}</a></p>
+              <p><a href={`mailto:${EMAIL}`} className="hover:text-primary transition-colors break-all">{EMAIL}</a></p>
             </div>
           </address>
         </div>
