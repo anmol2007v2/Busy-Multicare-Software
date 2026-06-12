@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, Phone, Mail } from 'lucide-react';
 import Contact from '../components/Contact';
-import { useSEO, Schema } from '../hooks/useSEO';
+import { useSEO } from '../hooks/useSEO';
 import { SITE_URL, COMPANY_NAME, PHONE_DISPLAY, EMAIL, ADDRESS } from '../config/site';
 import { generateLocalBusinessSchema } from '../seo-utils';
 

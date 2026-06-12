@@ -26,7 +26,7 @@ import SiteContentManager from './admin/components/SiteContentManager';
 import SettingsManager from './admin/components/SettingsManager';
 import SchemaMarkup from './components/SchemaMarkup';
 import { initAnalytics } from './analytics';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {

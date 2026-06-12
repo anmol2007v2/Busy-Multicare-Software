@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useSEO, Schema } from '../hooks/useSEO';
+import { useSEO } from '../hooks/useSEO';
 import { SITE_URL, PHONE_DISPLAY, PHONE_TEL } from '../config/site';
 
 const PRICING_DETAILS = [

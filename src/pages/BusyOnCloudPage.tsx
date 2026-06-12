@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Cloud, Lock, Zap, Globe, BarChart3, Users, Shield, CheckCircle2 } from 'lucide-react';
+import { Lock, Zap, Globe, BarChart3, Users, Shield, CheckCircle2 } from 'lucide-react';
 import { useSEO } from '../hooks/useSEO';
 import { SITE_URL, PHONE_DISPLAY, PHONE_TEL } from '../config/site';
 
