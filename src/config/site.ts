@@ -26,7 +26,7 @@ export const SOCIAL = {
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 export const YOUTUBE_DEMO = 'https://www.youtube.com/@busymulticare';
 
-export const ADMIN_PASSWORD = 'BusyAdmin@2025';
+export const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || '';
 
 export const STORAGE_KEYS = {
   blogs: 'busy_blogs',

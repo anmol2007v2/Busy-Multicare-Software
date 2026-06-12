@@ -130,14 +130,17 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
     tagline: "Nepal's authorized Busy Accounting Software dealer for over two decades.",
     solutionsTitle: 'Solutions',
     solutionsLinks: [
-      { label: 'Busy Products & Prices', path: '/products' },
-      { label: 'Pricing', path: '/#pricing' },
+      { label: 'Busy Products & Features', path: '/products' },
+      { label: 'Busy Software Pricing', path: '/busy-software-price-nepal' },
+      { label: 'Busy on Cloud', path: '/busy-on-cloud' },
+      { label: 'Training Programs', path: '/training' },
       { label: 'Awards', path: '/awards' },
     ],
     companyTitle: 'Company',
     companyLinks: [
       { label: 'About Us', path: '/about' },
       { label: 'Blog', path: '/blog' },
+      { label: 'Support', path: '/support' },
       { label: 'Contact Us', path: '/contact' },
     ],
     legalTitle: 'Legal',
@@ -223,9 +226,10 @@ export function mergeHomeContent(partial: Partial<HomeSiteContent> | null | unde
     footer: {
       ...DEFAULT_HOME_CONTENT.footer,
       ...partial.footer,
-      solutionsLinks: partial.footer?.solutionsLinks?.length ? partial.footer.solutionsLinks : DEFAULT_HOME_CONTENT.footer.solutionsLinks,
-      companyLinks: partial.footer?.companyLinks?.length ? partial.footer.companyLinks : DEFAULT_HOME_CONTENT.footer.companyLinks,
-      legalLinks: partial.footer?.legalLinks?.length ? partial.footer.legalLinks : DEFAULT_HOME_CONTENT.footer.legalLinks,
+      // Always use code-defined footer links so edits to defaultSiteContent.ts are reflected
+      solutionsLinks: DEFAULT_HOME_CONTENT.footer.solutionsLinks,
+      companyLinks: DEFAULT_HOME_CONTENT.footer.companyLinks,
+      legalLinks: DEFAULT_HOME_CONTENT.footer.legalLinks,
     },
     contact: { ...DEFAULT_HOME_CONTENT.contact, ...partial.contact, trustPoints: partial.contact?.trustPoints?.length ? partial.contact.trustPoints : DEFAULT_HOME_CONTENT.contact.trustPoints },
   };

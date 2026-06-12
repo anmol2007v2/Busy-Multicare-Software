@@ -13,9 +13,10 @@ const ProductsPage = () => {
   const [loading, setLoading] = useState(true);
 
   useSEO({
-    title: 'Busy Software Plans & Pricing Nepal | Basic, Standard, Enterprise',
-    description: 'Compare Busy Software plans for Nepal businesses. Basic from Rs.12,000, Standard & Enterprise also available. GST-ready, POS, inventory & payroll included.',
+    title: 'Busy Software Price in Nepal – Basic, Standard & Enterprise | Busy Multicare',
+    description: 'Check Busy Accounting Software pricing in Nepal: Basic from Rs.12,000, Standard & Enterprise plans. Compare editions with features, compare accounting software in Nepal.',
     canonical: `${SITE_URL}/products`,
+    keywords: 'busy software price nepal, busy accounting software price, busy basic standard enterprise price, busy software cost nepal',
   });
 
   useEffect(() => {

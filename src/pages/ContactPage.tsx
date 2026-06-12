@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
 import { MessageCircle, Phone, Mail } from 'lucide-react';
 import Contact from '../components/Contact';
-import { useSEO } from '../hooks/useSEO';
+import { useSEO, Schema } from '../hooks/useSEO';
 import { SITE_URL, COMPANY_NAME, PHONE_DISPLAY, EMAIL, ADDRESS } from '../config/site';
+import { generateLocalBusinessSchema } from '../seo-utils';
 
 const QUICK_LINKS = [
   { icon: Phone, label: 'Call us', value: '9851125905', href: 'tel:+9779851125905' },
@@ -17,9 +18,24 @@ const QUICK_LINKS = [
 
 const ContactPage = () => {
   useSEO({
-    title: 'Contact Busy Multicare Software Nepal | Kathmandu Office',
-    description: 'Reach Busy Multicare in Kathmandu. Call +977-9851125905 for official Busy accounting software demos, pricing, installation & training support.',
+    title: 'Contact Busy Multicare – Authorized Busy Software Dealer in Kathmandu',
+    description: 'Reach Busy Multicare for official Busy accounting software in Nepal. Free demo, training, installation & support. Located in Kathmandu. Call +977-9851125905 or WhatsApp.',
     canonical: `${SITE_URL}/contact`,
+    keywords: 'contact busy multicare, busy software contact nepal, busy software kathmandu, busy software support kathmandu',
+    structuredData: generateLocalBusinessSchema({
+      name: COMPANY_NAME,
+      url: SITE_URL,
+      phone: PHONE_DISPLAY,
+      email: EMAIL,
+      streetAddress: 'New Road & Putalisadak',
+      addressLocality: 'Kathmandu',
+      description: 'Authorized Busy Accounting Software dealer in Nepal with 20+ years of experience. Free demos, training, installation & ongoing support for businesses in Kathmandu and Nepal.',
+      socialProfiles: [
+        'https://www.facebook.com/p/Busy-Multi-Care-Pvt-Ltd-100063584352392/',
+        'https://www.youtube.com/@busymulticare',
+        'https://www.instagram.com/busymulticare',
+      ],
+    }),
   });
 
   return (

@@ -31,3 +31,24 @@ dist-ssr
 # Antigravity agents
 .agents/
 skills-lock.json
+
+# Test scripts with credentials
+test-cloudinary.js
+
+# Python virtual environment
+.venv/
+
+# Build / preview logs
+preview.err.log
+preview.log
+vite-dev.err.log
+vite-dev.log
+
+# SEO / planning docs (optional, remove if you want them tracked)
+IMPLEMENTATION_COMPLETE.md
+SEO_30DAY_CHECKLIST.md
+SEO_IMPLEMENTATION_GUIDE.md
+SEO_QUICK_START.md
+busy-multicare-seo-optimization.md
+busy-multicare-admin-prompt.md
+BLOG_POST_TEMPLATE.tsx

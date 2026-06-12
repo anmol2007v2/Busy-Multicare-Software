@@ -10,6 +10,9 @@ import AboutUsPage from './pages/AboutUsPage';
 import AwardsPage from './pages/AwardsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SupportPage from './pages/SupportPage';
+import PricingPage from './pages/PricingPage';
+import BusyOnCloudPage from './pages/BusyOnCloudPage';
+import TrainingPage from './pages/TrainingPage';
 import PrivacyPolicyPage from './pages/legal/PrivacyPolicyPage';
 import TermsPage from './pages/legal/TermsPage';
 import RefundPolicyPage from './pages/legal/RefundPolicyPage';
@@ -30,12 +33,6 @@ function App() {
   React.useEffect(() => { initAnalytics(); }, []);
   return (
     <HelmetProvider>
-      <Helmet>
-        <title>Busy Multicare Software – Healthcare Practice Management</title>
-        <meta name="description" content="Busy Multicare Software provides comprehensive practice management, accounting, and ERP solutions for healthcare clinics in Nepal." />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="robots" content="index,follow" />
-      </Helmet>
       <Router>
         <SchemaMarkup />
         <div className="min-h-screen bg-surface selection:bg-primary/20 selection:text-primary flex flex-col">
@@ -53,6 +50,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/product/:id" element={<ProductDetailPage />} />
+              <Route path="/busy-software-price-nepal" element={<PricingPage />} />
+              <Route path="/busy-on-cloud" element={<BusyOnCloudPage />} />
+              <Route path="/training" element={<TrainingPage />} />
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/support" element={<SupportPage />} />
               <Route path="/blog" element={<BlogPage />} />

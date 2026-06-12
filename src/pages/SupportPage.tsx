@@ -36,9 +36,10 @@ const SUPPORT_FAQS = [
 
 export default function SupportPage() {
   useSEO({
-    title: 'Busy Software Support Nepal | Help, Training & Installation',
-    description: 'Get expert Busy accounting software support in Nepal. Installation help, training, troubleshooting & AMC renewal. Call +977-9851125905 - Mon to Sat, 9AM-6PM.',
+    title: 'Busy Software Support Nepal – Training, Installation & Help | Busy Multicare',
+    description: 'Expert Busy accounting software support in Nepal: free training, onsite installation, troubleshooting, AMC renewal & technical help. Available in Kathmandu. Call +977-9851125905.',
     canonical: `${SITE_URL}/support`,
+    keywords: 'busy software support nepal, busy software training nepal, busy software installation kathmandu, busy software troubleshooting',
     structuredData: Schema.faq(SUPPORT_FAQS.map(f => ({ question: f.question, answer: f.answer })))
   });
 
