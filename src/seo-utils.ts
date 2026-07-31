@@ -73,7 +73,7 @@ export function generateLocalBusinessSchema({
   name: 'Busy Multicare Software Pvt. Ltd.',
   url: 'https://www.busymulticare.com.np',
   phone: '+977-9851125905',
-  email: 'busykathmandu@gmail.com',
+  email: 'busyedu@gmail.com',
   image: 'https://www.busymulticare.com.np/og-image.png',
   socialProfiles: ['https://www.facebook.com/p/Busy-Multi-Care-Pvt-Ltd-100063584352392/'],
 }) {

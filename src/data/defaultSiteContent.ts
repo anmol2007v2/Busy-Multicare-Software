@@ -165,8 +165,8 @@ export const DEFAULT_HOME_CONTENT: HomeSiteContent = {
 export const DEFAULT_GLOBAL_CONTENT: GlobalSiteContent = {
   phoneDisplay: '+977-9851125905',
   phoneRaw: '9851125905',
-  email: 'busykathmandu@gmail.com',
-  emailAlt: 'busykathmandu@gmail.com',
+  email: 'busyedu@gmail.com',
+  emailAlt: 'busyedu@gmail.com',
   address: 'Putalisadak, Kathmandu, Nepal',
   workingHours: 'SUN TO FRI 10AM TO 7PM',
   whatsappNumber: '9779851125905',
