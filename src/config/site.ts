@@ -8,6 +8,18 @@ export const PHONE_DISPLAY = '+977-9851125905';
 export const PHONE_TEL = '+9779851125905';
 export const PHONE_RAW = '9851125905';
 
+/** All active phone lines (10-digit Nepal numbers). First entry is the primary line. */
+export const CONTACT_PHONES: string[] = [
+  '9851125905',
+  '9808687965',
+  '9865996914',
+  '9802025905',
+  '9802025906',
+  '9802025907',
+  '9842771631',
+  '9841506132',
+];
+
 export const EMAIL = 'busyedu@gmail.com';
 export const EMAIL_ALT = 'busyedu@gmail.com';
 

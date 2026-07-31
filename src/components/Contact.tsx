@@ -13,7 +13,9 @@ import {
   Headphones,
   ArrowRight,
   CheckCircle2,
+  MessageCircle,
 } from 'lucide-react';
+import { CONTACT_PHONES } from '../config/site';
 
 const BUSINESS_TYPES = [
   'Retail / Wholesale',
@@ -55,7 +57,7 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
       ),
       href: mapsLink,
     },
-    { icon: Phone, title: 'Phone Support', desc: global.phoneRaw, href: `tel:+${global.whatsappNumber}` },
+    { icon: Phone, title: 'Phone Support', desc: 'Multiple lines available', href: `tel:+${global.whatsappNumber}` },
     { icon: Mail, title: 'Email Us', desc: global.emailAlt, href: `mailto:${global.emailAlt}` },
     { icon: Clock, title: 'Working Hours', desc: global.workingHours },
   ];
@@ -265,6 +267,58 @@ const Contact = ({ variant = 'home' }: ContactProps) => {
                 <ArrowRight size={16} />
               </span>
             </a>
+
+            {/* All phone lines — call any number */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/90 text-on-primary p-6 md:p-7 shadow-xl shadow-primary/20"
+            >
+              <div className="pointer-events-none absolute -top-12 -right-12 w-44 h-44 bg-white/10 rounded-full blur-2xl" />
+              <div className="pointer-events-none absolute -bottom-16 -left-10 w-52 h-52 bg-white/10 rounded-full blur-2xl" />
+              <div className="relative">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 mb-6">
+                  <div className="flex items-center gap-4">
+                    <span className="w-12 h-12 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center shrink-0">
+                      <Phone size={22} />
+                    </span>
+                    <div>
+                      <h5 className="font-bold text-label-md">Call us — any line</h5>
+                      <p className="text-label-sm text-on-primary/80 mt-0.5">
+                        {CONTACT_PHONES.length} phone lines · {global.workingHours}
+                      </p>
+                    </div>
+                  </div>
+                  <a
+                    href={`https://wa.me/${global.whatsappNumber}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-xl bg-white text-primary px-5 py-3 font-bold text-label-sm shadow-md hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all shrink-0"
+                  >
+                    <MessageCircle size={16} />
+                    WhatsApp instead
+                  </a>
+                </div>
+                <div className="flex flex-wrap gap-2.5">
+                  {CONTACT_PHONES.map((number, i) => (
+                    <a
+                      key={number}
+                      href={`tel:+977${number}`}
+                      className={`inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-label-sm font-bold tracking-wide tabular-nums transition-all hover:-translate-y-0.5 ${
+                        i === 0
+                          ? 'bg-white text-primary hover:bg-white/90'
+                          : 'bg-white/10 text-white hover:bg-white hover:text-primary'
+                      }`}
+                    >
+                      <Phone size={14} />
+                      {number}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {contactInfo.map((item, i) => {

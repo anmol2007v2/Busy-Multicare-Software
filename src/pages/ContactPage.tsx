@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import { MessageCircle, Phone, Mail } from 'lucide-react';
 import Contact from '../components/Contact';
 import { useSEO } from '../hooks/useSEO';
-import { SITE_URL, COMPANY_NAME, PHONE_DISPLAY, EMAIL, ADDRESS } from '../config/site';
+import { SITE_URL, COMPANY_NAME, PHONE_DISPLAY, EMAIL, ADDRESS, CONTACT_PHONES } from '../config/site';
 import { generateLocalBusinessSchema } from '../seo-utils';
 
 const QUICK_LINKS = [
-  { icon: Phone, label: 'Call us', value: '9851125905', href: 'tel:+9779851125905' },
+  { icon: Phone, label: 'Call us', value: `${CONTACT_PHONES.length} lines · ${CONTACT_PHONES[0]}`, href: `tel:+977${CONTACT_PHONES[0]}` },
   { icon: Mail, label: 'Email', value: EMAIL, href: `mailto:${EMAIL}` },
   {
     icon: MessageCircle,
@@ -129,7 +129,13 @@ const ContactPage = () => {
             </div>
             <div>
               <p className="font-bold text-on-background text-label-md">Phone Support</p>
-              <p><a href="tel:+9779851125905" className="hover:text-primary transition-colors">{PHONE_DISPLAY}</a></p>
+              <p className="space-y-1">
+                {CONTACT_PHONES.map((number) => (
+                  <a key={number} href={`tel:+977${number}`} className="block hover:text-primary transition-colors">
+                    +977-{number}
+                  </a>
+                ))}
+              </p>
             </div>
             <div>
               <p className="font-bold text-on-background text-label-md">Email Address</p>
